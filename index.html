@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的个人网站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      font-size: 1.5rem;
+    }
+    nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+    }
+    .hero {
+      padding: 100px 20px;
+      text-align: center;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .section {
+      padding: 60px 20px;
+      max-width: 960px;
+      margin: auto;
+    }
+    .section h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 0.5rem;
+    }
+    .about p {
+      font-size: 1.1rem;
+    }
+    .skills ul {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+    .skills li {
+      background: #2575fc;
+      color: white;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .project {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .project h4 {
+      margin-bottom: 10px;
+    }
+    .contact {
+      text-align: center;
+    }
+    .contact a {
+      margin: 0 10px;
+      color: #2575fc;
+      text-decoration: none;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: white;
+      margin-top: 40px;
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部导航 -->
+  <header>
+    <h1>你的名字</h1>
+    <nav>
+      <a href="#about">关于我</a>
+      <a href="#skills">技能</a>
+      <a href="#projects">项目</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </header>
+
+  <!-- 横幅 -->
+  <section class="hero">
+    <h2>你好，我是 [你的名字]</h2>
+    <p>一名热爱创造的开发者 / 设计师 / 自由职业者</p>
+  </section>
+
+  <!-- 关于我 -->
+  <section class="section about" id="about">
+    <h3>关于我</h3>
+    <p>
+      这里是你的个人简介。你可以写你的背景、经验、兴趣、职业目标等。
+      例如：我是一名前端开发工程师，专注于构建现代、响应式的网站和应用，拥有3年开发经验。
+    </p>
+  </section>
+
+  <!-- 技能 -->
+  <section class="section skills" id="skills">
+    <h3>技能</h3>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3 / SCSS</li>
+      <li>JavaScript / TypeScript</li>
+      <li>React / Vue</li>
+      <li>Node.js</li>
+      <li>Git & GitHub</li>
+    </ul>
+  </section>
+
+  <!-- 项目 -->
+  <section class="section" id="projects">
+    <h3>项目作品</h3>
+    <div class="projects">
+      <div class="project">
+        <h4>项目名称 1</h4>
+        <p>项目简要描述，包含功能、使用的技术、上线链接等。</p>
+      </div>
+      <div class="project">
+        <h4>项目名称 2</h4>
+        <p>项目简要描述，包含功能、使用的技术、上线链接等。</p>
+      </div>
+      <div class="project">
+        <h4>项目名称 3</h4>
+        <p>项目简要描述，包含功能、使用的技术、上线链接等。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系方式 -->
+  <section class="section contact" id="contact">
+    <h3>联系我</h3>
+    <p>你可以通过以下方式联系我：</p>
+    <p>
+      📧 邮箱：<a href="mailto:yourname@example.com">yourname@example.com</a><br/>
+      💼 GitHub：<a href="https://github.com/yourusername" target="_blank">yourusername</a><br/>
+      🔗 领英：<a href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a>
+    </p>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <p>&copy; 2025 你的名字. 版权所有。</p>
+  </footer>
+
+</body>
+</html>
