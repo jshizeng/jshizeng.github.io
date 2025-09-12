@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>我的个人网站</title>
+  <title>Jerry's Website</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f4f4f4;
       color: #333;
       line-height: 1.6;
     }
+
     header {
       background: #222;
       color: white;
@@ -27,43 +30,60 @@
       top: 0;
       z-index: 10;
     }
+
     header h1 {
       font-size: 1.5rem;
     }
+
     nav a {
       color: white;
       margin-left: 1rem;
       text-decoration: none;
     }
+
     .hero {
-      padding: 100px 20px;
+      padding: 100px 20px 60px;
       text-align: center;
       background: linear-gradient(to right, #6a11cb, #2575fc);
       color: white;
     }
+
     .hero h2 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
+
+    .hero img {
+      max-width: 1000px;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
     .section {
       padding: 60px 20px;
       max-width: 960px;
       margin: auto;
     }
+
     .section h3 {
       font-size: 2rem;
       margin-bottom: 1rem;
       border-bottom: 2px solid #ddd;
       padding-bottom: 0.5rem;
     }
+
     .about p {
       font-size: 1.1rem;
     }
+
     .skills ul {
       display: flex;
       flex-wrap: wrap;
       list-style: none;
     }
+
     .skills li {
       background: #2575fc;
       color: white;
@@ -72,28 +92,39 @@
       border-radius: 20px;
       font-size: 0.9rem;
     }
+
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
       gap: 20px;
     }
+
     .project {
       background: white;
       padding: 20px;
+      margin-bottom: 10px;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
+
     .project h4 {
       margin-bottom: 10px;
     }
+
+    .project p {
+      margin-bottom: 10px;
+    }
+
     .contact {
       text-align: center;
     }
+
     .contact a {
       margin: 0 10px;
       color: #2575fc;
       text-decoration: none;
     }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -101,92 +132,166 @@
       color: white;
       margin-top: 40px;
     }
+
+    .PDFButton {
+      display: block;
+      text-align: center;
+      color: white;
+      height: 30px;
+      width: 100%;
+      border-radius: 5px;
+      padding: 0px;
+      background-image: linear-gradient(to right, #6a11cb, #2575fc);
+      /* border-style: solid;
+      border-width: 3px;
+      border-color: black; */
+      text-decoration: none;
+      transition: all 100ms;
+    }
+
+    .PDFButton:hover {
+      color: rgb(200, 200, 200);
+      transform: translateY(-2px);
+    }
+
+    .ProjectPicture {
+      border-radius: 10px;
+      width: 100%;
+    }
+
+
     @media (max-width: 600px) {
       header {
         flex-direction: column;
         align-items: flex-start;
       }
+
       nav {
         margin-top: 10px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- 顶部导航 -->
   <header>
-    <h1>你的名字</h1>
+    <h1>Jerry</h1>
     <nav>
-      <a href="#about">关于我</a>
-      <a href="#skills">技能</a>
-      <a href="#projects">项目</a>
-      <a href="#contact">联系</a>
+      <a href="#about">about me</a>
+      <a href="#skills">skill</a>
+      <a href="#projects">project</a>
+      <a href="#contact">contact</a>
     </nav>
   </header>
 
   <!-- 横幅 -->
   <section class="hero">
-    <h2>你好，我是 [你的名字]</h2>
-    <p>一名热爱创造的开发者 / 设计师 / 自由职业者</p>
+    <h2>Hi, I'm Jerry.</h2>
+    <p>I'm a gamer and a game maker. A freshman at USC IMDG.</p>
+    <img src="Main Page Self Portrait.jpg" alt="Jerry's hero image">
   </section>
 
   <!-- 关于我 -->
   <section class="section about" id="about">
-    <h3>关于我</h3>
+    <h3>About me</h3>
     <p>
-      这里是你的个人简介。你可以写你的背景、经验、兴趣、职业目标等。
-      例如：我是一名前端开发工程师，专注于构建现代、响应式的网站和应用，拥有3年开发经验。
+      A freshman in University of Southern California SCA IMGD program.
+      I love Dark Souls Series, CRPG, Sandbox, and many other games.
     </p>
   </section>
 
   <!-- 技能 -->
   <section class="section skills" id="skills">
-    <h3>技能</h3>
+    <h3>Skill</h3>
     <ul>
-      <li>HTML5</li>
-      <li>CSS3 / SCSS</li>
-      <li>JavaScript / TypeScript</li>
-      <li>React / Vue</li>
-      <li>Node.js</li>
-      <li>Git & GitHub</li>
+      <li>Level Design</li>
+      <li>3D Modeling</li>
+      <li>2D Digital Art</li>
+      <li>Narrative Design</li>
     </ul>
   </section>
 
   <!-- 项目 -->
   <section class="section" id="projects">
-    <h3>项目作品</h3>
+    <h3>Porjects</h3>
     <div class="projects">
       <div class="project">
-        <h4>项目名称 1</h4>
-        <p>项目简要描述，包含功能、使用的技术、上线链接等。</p>
+        <h4>Involution</h4>
+        <p>
+Medium：Digital Game<br>
+Year：2024<br>
+Size：Digital<br>
+Description：An adventure game about exploring in an unknown world with the ability to control the vine. Players need to use the vine creatively in order to successfully explore through different levels. The vine can fit into various angle and terrain, serve as a tool to climb on. Players can also use the vine to destroy the trees that stand in their way. The process of designing this game is a unique experience, I learn about how to use Unity3D and how a simple mechanic like controlling the vine can be so amusing.
+</p>
+        <!-- //border-style: solid; border-color: black; border-width: 5px; -->
+        <img src="02-Digital Game-Involution-02-1.jpeg" class="ProjectPicture"></img>
+        <a href="02-Digital Game-Involution-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
       </div>
       <div class="project">
-        <h4>项目名称 2</h4>
-        <p>项目简要描述，包含功能、使用的技术、上线链接等。</p>
+        <h4>Explore Vinland</h4>
+        <p>
+Medium：Board Game<br>
+Year：2024<br>
+Size：50cm x 50cm<br>
+Description：Explore Vinland is a board game about farming and competing. In this game, two players need to use their strategies to manager their farm and try to get a lot of money. There are various ways to combine the cards and create unique ways to get money. The order of the players is also imperative considering that there are four seasons with special buff within this game. Creating this board game is easy, but the process of playtesting it is hard. The experience of playtesting the game allows me to understand that controlling the balance between different players is difficult but necessary.
+</p>
+        <img src="04-Board Game-Explore Vinland-02-1.jpeg" class="ProjectPicture"></img>
+        <a href="04-Board Game-Explore Vinland-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
       </div>
       <div class="project">
-        <h4>项目名称 3</h4>
-        <p>项目简要描述，包含功能、使用的技术、上线链接等。</p>
+        <h4>Epiphany's Journey</h4>
+        <p>
+Medium：Digital Game<br>
+Year：2023<br>
+Size：Digital<br>
+Description：This is a soul-like level design project about exploring through an island, fighting boss and finding treasures. Initially, I made the level design in Blender. However, in order to playtesting it, I moved it into Unreal Engine 5. There is an upper area and a lower area. In each area, there is only one bonfire. However, the bonfire can connect to 3-4 different path. There are 8 bosses within the game, only 4 of them are “real”. Players need to defeat the real boss and destroy their statues in order to escape the island. I’m a serious fan of soul-like games, therefore making this project made me very glade and fulfilled.
+</p>
+        <img src="06-Digital Game-Epiphany’s Journey-02-1.jpeg" class="ProjectPicture"></img>
+        <a href="06-Digital Game-Epiphany’s Journey-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
       </div>
+      <div class="project">
+        <h4>Demigod Dungeon</h4>
+        <p>
+Medium：Digital Game<br>
+Year：2024<br>
+Size：Digital<br>
+Description：Demigod Dungeon is a team project that I made when I was in the NHSGA precollege program of Carnegie Mellon University. I am responsible for 2D environment art and 3D modelling. The experience of collaborating and teamworking is memorable for me. We combine the use of eye tracker into this game, allowing the players to use their eyes to deal with the enemies just like medusa. On the other hand, players navigate as the character Arachne, climb like a spider and shot web to jump around. I learn about texturing and making animations through the process of making the game. 
+</p>
+        <img src="07-Digital Game-Demigod Dungeon-1.jpeg" class="ProjectPicture"></img>
+        <a href="07-Digital Game-Demigod Dungeon.pdf" target="_blank" class="PDFButton">Open PDF</a>
+      </div>
+      <div class="project">
+        <h4>The Lonely One</h4>
+        <p>
+Medium：Digital Art Work<br>
+Year：2023<br>
+Size：Digital<br>
+Description：A 3D Scene I made in Blender. It’s about a skeleton setting on a throne. The background story is about greedy prince who being banished by the king. Even after many years, he is still holding his treasure chest. I use different rocks to build the cave, and I use the texture paint to design the treasure chest. I also learn about how to use the material ball to adjust the atmosphere of the environment. 
+</p>
+        <img src="08-Digital Art Work-The Lonely One-1.jpeg" class="ProjectPicture"></img>
+        <a href="08-Digital Art Work-The Lonely One.pdf" target="_blank" class="PDFButton">Open PDF</a>
+      </div>
+
     </div>
   </section>
 
   <!-- 联系方式 -->
   <section class="section contact" id="contact">
-    <h3>联系我</h3>
-    <p>你可以通过以下方式联系我：</p>
+    <h3>Contact Me!</h3>
+    <p>Contact me in the following media:</p>
     <p>
-      📧 邮箱：<a href="mailto:yourname@example.com">yourname@example.com</a><br/>
-      💼 GitHub：<a href="https://github.com/yourusername" target="_blank">yourusername</a><br/>
-      🔗 领英：<a href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a>
+      📧 Personal Email：<a href="mailto:jerryshizeng@gamil.com">jerryshizeng@gmail.com</a><br />
+        <!-- 🔗 领英：<a href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a> -->
     </p>
   </section>
 
   <!-- 页脚 -->
   <footer>
-    <p>&copy; 2025 你的名字. 版权所有。</p>
+    <p>&copy; 2025 Jerry Shizeng. All rights reserved.</p>
   </footer>
 
 </body>
+
 </html>
