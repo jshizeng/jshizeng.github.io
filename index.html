@@ -14,13 +14,15 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
+      font-size: 1.1rem;
+      background-color: #000000;
+      color: #ffffff;
       line-height: 1.6;
     }
 
+    /* 顶部导航 */
     header {
-      background: #222;
+      background: #000000;
       color: white;
       padding: 1rem 2rem;
       display: flex;
@@ -32,60 +34,163 @@
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+      font-weight: bold;
     }
 
     nav a {
       color: white;
-      margin-left: 1rem;
+      margin-left: 1.5rem;
       text-decoration: none;
+      font-size: 1rem;
     }
 
+    /* 头图 */
     .hero {
-      padding: 100px 20px 60px;
-      text-align: center;
-      background: linear-gradient(to right, #6a11cb, #2575fc);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 10%;
+      background: linear-gradient(to right, #000000, #003da5);
       color: white;
     }
 
-    .hero h2 {
-      font-size: 2.5rem;
+    .hero-content {
+      max-width: 50%;
+      padding-right: 30px;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
       margin-bottom: 1rem;
     }
 
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    .hero-content .cta-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: white;
+      color: #00286d;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .hero-content .cta-btn:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+    }
+
+    /* 头像 */
     .hero img {
-      max-width: 1000px;
+      max-width: 50%;
       width: 100%;
-      margin-top: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
     .section {
       padding: 60px 20px;
-      max-width: 100%;
-      margin: 50px;
+      max-width: 1200px;
+      margin: 50px auto;
     }
 
     .section h3 {
-      font-size: 2rem;
+      font-size: 60px;
       margin-bottom: 1rem;
-      border-bottom: 2px solid #ddd;
+      border-bottom: 2px solid #333;
       padding-bottom: 0.5rem;
     }
 
-    .about p {
-      font-size: 1.1rem;
+    /* About Me 美化 */
+    .about {
+      position: relative;
+    }
+
+    .about-inner {
+      margin-top: 20px;
+      padding: 30px 30px 28px 30px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top left, rgba(0, 90, 255, 0.25), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.9), #050505);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-bar {
+      width: 5px;
+      min-height: 130px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #4aa8ff, #8f7bff);
+      flex-shrink: 0;
+    }
+
+    .about-text-block {
+      flex: 1;
+    }
+
+    .about-title-line {
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8fb3ff;
+      margin-bottom: 8px;
+    }
+
+    .about-main-text {
+      font-size: 1.05rem;
+      color: #f5f5f5;
+      margin-bottom: 16px;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .about-tag {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(144, 178, 255, 0.4);
+      color: #cfd9ff;
+      backdrop-filter: blur(6px);
+    }
+
+    .about-note {
+      font-size: 0.85rem;
+      color: #9ca7c8;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    .about-highlight {
+      color: #ffd86b;
+      font-weight: 600;
     }
 
     .skills ul {
       display: flex;
       flex-wrap: wrap;
       list-style: none;
+      margin-top: 10px;
     }
 
     .skills li {
-      background: #2575fc;
+      background: #00286d;
       color: white;
       padding: 10px 15px;
       margin: 5px;
@@ -95,25 +200,31 @@
 
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(49%, 1fr));
+      grid-template-columns: 100%;
       gap: 20px;
     }
 
     .project {
-      background: white;
+      display: grid;
+      background: #00286d;
       padding: 20px;
       margin-bottom: 10px;
-      border-radius: 8px;
+      border-radius: 12px;
+      grid-template-columns: 50% 50%;
       width: 100%;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+      gap: 10px;
     }
 
     .project h4 {
-      margin-bottom: 10px;
+      margin: 10px;
+      margin-bottom: -10px;
+      font-size: 32px;
     }
 
     .project p {
-      margin-bottom: 10px;
+      margin: 30px 10px 10px 10px;
+      font-size: 0.95rem;
     }
 
     .contact {
@@ -122,7 +233,7 @@
 
     .contact a {
       margin: 0 10px;
-      color: #2575fc;
+      color: #5a9dff;
       text-decoration: none;
     }
 
@@ -138,14 +249,13 @@
       display: block;
       text-align: center;
       color: white;
-      height: 30px;
-      width: 100%;
-      border-radius: 5px;
-      padding: 0px;
-      background-image: linear-gradient(to right, #6a11cb, #2575fc);
-      /* border-style: solid;
-      border-width: 3px;
-      border-color: black; */
+      height: 50px;
+      width: calc(100% - 40px);
+      border-radius: 50px;
+      padding-top: 10px;
+      margin: 20px;
+      background-image: linear-gradient(to right, #000000, #003da5);
+      font-size: 1.1rem;
       text-decoration: none;
       transition: all 100ms;
     }
@@ -161,8 +271,126 @@
       width: 100%;
       margin-top: 20px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      display: block;
     }
 
+    .YoutubeVideo {
+      border-radius: 15px;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* --- Arts Gallery --- */
+    #arts {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 60px 20px;
+    }
+
+    .arts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      padding: 20px 0;
+    }
+
+    .art-item {
+      width: 100%;
+      background: #0a0a0a;
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+      cursor: zoom-in;
+    }
+
+    .art-item img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      display: block;
+    }
+
+    /* Lightbox 全屏放大 */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox-close-hint {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      color: #cccccc;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    /* 手机端自适应 */
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 8%;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        padding-right: 0;
+        margin-bottom: 30px;
+      }
+
+      .section h3 {
+        font-size: 40px;
+      }
+
+      .about-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .about-bar {
+        min-height: 80px;
+      }
+    }
+
+    @media (max-width: 1500px) {
+      .project {
+        grid-template-columns: 100%;
+      }
+
+      .YoutubeVideo {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .arts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     @media (max-width: 600px) {
       header {
@@ -172,6 +400,11 @@
 
       nav {
         margin-top: 10px;
+      }
+
+      nav a {
+        margin-left: 0;
+        margin-right: 1rem;
       }
     }
   </style>
@@ -183,28 +416,54 @@
   <header>
     <h1>Jerry</h1>
     <nav>
-      <a href="#about">about me</a>
-      <a href="#skills">skills</a>
-      <a href="#projects">projects</a>
-      <a href="#arts">arts</a>
-      <a href="#contact">contact</a>
+      <a href="#about">About Me</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#arts">Arts</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <!-- 横幅 -->
   <section class="hero">
-    <h2>Hi, I'm Jerry.</h2>
-    <p>I'm a gamer and a game maker. A freshman at USC IMDG.</p>
+    <div class="hero-content">
+      <h2>Hi, I'm Jerry.</h2>
+      <p>I'm a gamer and a game maker. A freshman at USC IMGD.</p>
+      <a href="#projects" class="cta-btn">See My Projects</a>
+    </div>
     <img src="Main Page Self Portrait.jpg" alt="Jerry's hero image">
   </section>
 
   <!-- 关于我 -->
   <section class="section about" id="about">
     <h3>About me</h3>
-    <p>
-      A freshman in University of Southern California SCA IMGD program.
-      I love Dark Souls Series, CRPG, Sandbox, and many other games.
-    </p>
+    <div class="about-inner">
+      <div class="about-bar"></div>
+      <div class="about-text-block">
+        <div class="about-title-line">WHO I AM</div>
+        <p class="about-main-text">
+          I’m <span class="about-highlight">Jerry Shizeng</span>, a freshman in the University of Southern California
+          School of Cinematic Arts, IMGD program. I love Dark Souls, CRPGs, sandbox worlds, and any game that
+          rewards patience, curiosity, and careful design.
+        </p>
+        <p class="about-main-text">
+          Right now I’m exploring <span class="about-highlight">level design, system design, and narrative design</span>
+          through small prototypes and student projects. I enjoy building worlds where the environment itself tells
+          a story, and where every combat or puzzle encounter says something about the characters.
+        </p>
+        <div class="about-tags">
+          <span class="about-tag">USC IMGD Freshman</span>
+          <span class="about-tag">Level Design</span>
+          <span class="about-tag">3D &amp; 2D Art</span>
+          <span class="about-tag">Soulslike Enthusiast</span>
+          <span class="about-tag">CRPG Lover</span>
+        </div>
+        <p class="about-note">
+          I’m always learning, always iterating, and always trying to make the next project a little more ambitious
+          — and a little more fun to play.
+        </p>
+      </div>
+    </div>
   </section>
 
   <!-- 技能 -->
@@ -223,123 +482,162 @@
     <h3>Projects</h3>
     <div class="projects">
       <div class="project">
-        <h4>Involution</h4>
-        <p>
-          Medium：Digital Game<br>
-          Year：2024<br>
-          Size：Digital<br>
-          Description：An adventure game about exploring in an unknown world with the ability to control the vine.
-          Players need to use the vine creatively in order to successfully explore through different levels. The vine
-          can fit into various angle and terrain, serve as a tool to climb on. Players can also use the vine to destroy
-          the trees that stand in their way. The process of designing this game is a unique experience, I learn about
-          how to use Unity3D and how a simple mechanic like controlling the vine can be so amusing.
-        </p>
-        <!-- //border-style: solid; border-color: black; border-width: 5px; -->
-        <a href="02-Digital Game-Involution-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
-        <img src="02-Digital Game-Involution-02-1.jpeg" class="ProjectPicture"></img>
-        <iframe width="100%" height="500" src="https://www.youtube.com/embed/6vLlf51hJYE" title="Involution"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div>
+          <h4>Involution</h4>
+          <p>
+            Medium：Digital Game<br>
+            Year：2024<br>
+            Size：Digital<br>
+            Description：An adventure game about exploring in an unknown world with the ability to control the vine.
+            Players need to use the vine creatively in order to successfully explore through different levels. The vine
+            can fit into various angle and terrain, serve as a tool to climb on. Players can also use the vine to
+            destroy
+            the trees that stand in their way. The process of designing this game is a unique experience, I learn about
+            how to use Unity3D and how a simple mechanic like controlling the vine can be so amusing.
+          </p>
+          <a href="02-Digital Game-Involution-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
+        </div>
+        <div>
+          <iframe class="YoutubeVideo" src="https://www.youtube.com/embed/6vLlf51hJYE"
+            title="Involution" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
       </div>
-      <div class="project">
-        <h4>Explore Vinland</h4>
-        <p>
-          Medium：Board Game<br>
-          Year：2024<br>
-          Size：50cm x 50cm<br>
-          Description：Explore Vinland is a board game about farming and competing. In this game, two players need to use
-          their strategies to manager their farm and try to get a lot of money. There are various ways to combine the
-          cards and create unique ways to get money. The order of the players is also imperative considering that there
-          are four seasons with special buff within this game. Creating this board game is easy, but the process of
-          playtesting it is hard. The experience of playtesting the game allows me to understand that controlling the
-          balance between different players is difficult but necessary.
-        </p>
-        <a href="04-Board Game-Explore Vinland-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
-        <img src="04-Board Game-Explore Vinland-02-1.jpeg" class="ProjectPicture"></img>
-        <iframe width="100%" height="500" src="https://www.youtube.com/embed/GHTqYhepmQM" title="Explore Vinland"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="project">
-        <h4>Demigod Dungeon</h4>
-        <p>
-          Medium：Digital Game<br>
-          Year：2024<br>
-          Size：Digital<br>
-          Description：Demigod Dungeon is a team project that I made when I was in the NHSGA precollege program of
-          Carnegie Mellon University. I am responsible for 2D environment art and 3D modelling. The experience of
-          collaborating and teamworking is memorable for me. We combine the use of eye tracker into this game, allowing
-          the players to use their eyes to deal with the enemies just like medusa. On the other hand, players navigate
-          as the character Arachne, climb like a spider and shot web to jump around. I learn about texturing and making
-          animations through the process of making the game.
-        </p>
-        <a href="07-Digital Game-Demigod Dungeon.pdf" target="_blank" class="PDFButton">Open PDF</a>
-        <img src="07-Digital Game-Demigod Dungeon-1.jpeg" class="ProjectPicture"></img>
-        <iframe width="100%" height="500" src="https://www.youtube.com/embed/nIs4eCqKdqw" title="Demigod Dungeon"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="project">
-        <h4>Epiphany's Journey</h4>
-        <p>
-          Medium：Digital Game<br>
-          Year：2023<br>
-          Size：Digital<br>
-          Description：This is a soul-like level design project about exploring through an island, fighting boss and
-          finding treasures. Initially, I made the level design in Blender. However, in order to playtesting it, I moved
-          it into Unreal Engine 5. There is an upper area and a lower area. In each area, there is only one bonfire.
-          However, the bonfire can connect to 3-4 different path. There are 8 bosses within the game, only 4 of them are
-          “real”. Players need to defeat the real boss and destroy their statues in order to escape the island. I’m a
-          serious fan of soul-like games, therefore making this project made me very glade and fulfilled.
-        </p>
-        <a href="06-Digital Game-Epiphany’s Journey-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
-        <img src="06-Digital Game-Epiphany’s Journey-02-1.jpeg" class="ProjectPicture"></img>
 
-        <iframe width="100%" height="500" src="https://www.youtube.com/embed/Bx0LAfco6Xc"
-          title="Epiphany&#39;s Journey Pitch Version" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
       <div class="project">
-        <h4>The Lonely One</h4>
-        <p>
-          Medium：Digital Art Work<br>
-          Year：2023<br>
-          Size：Digital<br>
-          Description：A 3D Scene I made in Blender. It’s about a skeleton setting on a throne. The background story is
-          about greedy prince who being banished by the king. Even after many years, he is still holding his treasure
-          chest. I use different rocks to build the cave, and I use the texture paint to design the treasure chest. I
-          also learn about how to use the material ball to adjust the atmosphere of the environment.
-        </p>
-        <a href="08-Digital Art Work-The Lonely One.pdf" target="_blank" class="PDFButton">Open PDF</a>
-        <img src="08-Digital Art Work-The Lonely One-1.jpeg" class="ProjectPicture"></img>
+        <div>
+          <h4>Explore Vinland</h4>
+          <p>
+            Medium：Board Game<br>
+            Year：2024<br>
+            Size：50cm x 50cm<br>
+            Description：Explore Vinland is a board game about farming and competing. In this game, two players need to
+            use their strategies to manager their farm and try to get a lot of money. There are various ways to combine
+            the
+            cards and create unique ways to get money. The order of the players is also imperative considering that
+            there are four seasons with special buff within this game. Creating this board game is easy, but the process
+            of
+            playtesting it is hard. The experience of playtesting the game allows me to understand that controlling the
+            balance between different players is difficult but necessary.
+          </p>
+          <a href="04-Board Game-Explore Vinland-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
+        </div>
+        <div>
+          <iframe class="YoutubeVideo" src="https://www.youtube.com/embed/GHTqYhepmQM"
+            title="Explore Vinland" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="project">
+        <div>
+          <h4>Demigod Dungeon</h4>
+          <p>
+            Medium：Digital Game<br>
+            Year：2024<br>
+            Size：Digital<br>
+            Description：Demigod Dungeon is a team project that I made when I was in the NHSGA precollege program of
+            Carnegie Mellon University. I am responsible for 2D environment art and 3D modelling. The experience of
+            collaborating and teamworking is memorable for me. We combine the use of eye tracker into this game,
+            allowing
+            the players to use their eyes to deal with the enemies just like medusa. On the other hand, players navigate
+            as the character Arachne, climb like a spider and shot web to jump around. I learn about texturing and
+            making
+            animations through the process of making the game.
+          </p>
+          <a href="07-Digital Game-Demigod Dungeon.pdf" target="_blank" class="PDFButton">Open PDF</a>
+        </div>
+        <div>
+          <iframe class="YoutubeVideo" src="https://www.youtube.com/embed/nIs4eCqKdqw"
+            title="Demigod Dungeon" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="project">
+        <div>
+          <h4>Epiphany's Journey</h4>
+          <p>
+            Medium：Digital Game<br>
+            Year：2023<br>
+            Size：Digital<br>
+            Description：This is a soul-like level design project about exploring through an island, fighting boss and
+            finding treasures. Initially, I made the level design in Blender. However, in order to playtesting it, I
+            moved
+            it into Unreal Engine 5. There is an upper area and a lower area. In each area, there is only one bonfire.
+            However, the bonfire can connect to 3-4 different path. There are 8 bosses within the game, only 4 of them
+            are
+            “real”. Players need to defeat the real boss and destroy their statues in order to escape the island. I’m a
+            serious fan of soul-like games, therefore making this project made me very glade and fulfilled.
+          </p>
+          <a href="06-Digital Game-Epiphany’s Journey-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
+        </div>
+        <div>
+          <iframe class="YoutubeVideo" src="https://www.youtube.com/embed/Bx0LAfco6Xc"
+            title="Epiphany&#39;s Journey Pitch Version" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="project">
+        <div>
+          <h4>The Lonely One</h4>
+          <p>
+            Medium：Digital Art Work<br>
+            Year：2023<br>
+            Size：Digital<br>
+            Description：A 3D Scene I made in Blender. It’s about a skeleton setting on a throne. The background story is
+            about greedy prince who being banished by the king. Even after many years, he is still holding his treasure
+            chest. I use different rocks to build the cave, and I use the texture paint to design the treasure chest. I
+            also learn about how to use the material ball to adjust the atmosphere of the environment.
+          </p>
+          <a href="08-Digital Art Work-The Lonely One.pdf" target="_blank" class="PDFButton">Open PDF</a>
+        </div>
+        <img src="08-Digital Art Work-The Lonely One-1.jpeg" class="ProjectPicture" alt="The Lonely One">
       </div>
 
     </div>
   </section>
 
-  <!-- 艺术 -->
-  <section class="section arts" id="arts">
+  <!-- 艺术 Artwork -->
+  <section class="section" id="arts">
     <h3>Arts</h3>
-    <div class="arts">
-      <div class="arts">
-        <h4>Involution</h4>
-        <p>
 
-        </p>
-        <!-- //border-style: solid; border-color: black; border-width: 5px; -->
-        <a href="02-Digital Game-Involution-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
-        <img src="02-Digital Game-Involution-02-1.jpeg" class="ProjectPicture"></img>
-        <iframe width="100%" height="500" src="https://www.youtube.com/embed/6vLlf51hJYE" title="Involution"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
+    <div class="arts-grid">
+      <figure class="art-item">
+        <img src="02-Digital Game-Involution-02-1.jpeg" alt="Artwork 1">
+      </figure>
+
+      <figure class="art-item">
+        <img src="08-Digital Art Work-The Lonely One-1.jpeg" alt="Artwork 2">
+      </figure>
+
+      <figure class="art-item">
+        <img src="YOUR-ART-3.jpeg" alt="Artwork 3">
+      </figure>
+
+      <figure class="art-item">
+        <img src="YOUR-ART-4.jpeg" alt="Artwork 4">
+      </figure>
+
+      <!-- 继续添加更多作品 -->
+      <!--
+      <figure class="art-item">
+        <img src="YOUR-ART-5.jpeg" alt="Artwork 5">
+      </figure>
+      -->
     </div>
   </section>
+
+  <!-- Lightbox 全屏展示容器 -->
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" class="lightbox-img" src="" alt="">
+    <div class="lightbox-close-hint">Click or press Esc to close</div>
+  </div>
 
   <!-- 联系方式 -->
   <section class="section contact" id="contact">
@@ -347,7 +645,6 @@
     <p>Contact me in the following media:</p>
     <p>
       📧 Personal Email：<a href="mailto:jerryshizeng@gamil.com">jerryshizeng@gmail.com</a><br />
-      <!-- 🔗 领英：<a href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a> -->
     </p>
   </section>
 
@@ -355,6 +652,35 @@
   <footer>
     <p>&copy; 2025 Jerry Shizeng. All rights reserved.</p>
   </footer>
+
+  <!-- JS：Artwork 图片点击放大 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+
+      document.querySelectorAll('.arts-grid .art-item img').forEach(img => {
+        img.addEventListener('click', () => {
+          lightboxImg.src = img.src;
+          lightbox.classList.add('open');
+        });
+      });
+
+      // 点击遮罩关闭
+      lightbox.addEventListener('click', () => {
+        lightbox.classList.remove('open');
+        lightboxImg.src = '';
+      });
+
+      // ESC 关闭
+      document.addEventListener('keyup', (e) => {
+        if (e.key === 'Escape') {
+          lightbox.classList.remove('open');
+          lightboxImg.src = '';
+        }
+      });
+    });
+  </script>
 
 </body>
 
