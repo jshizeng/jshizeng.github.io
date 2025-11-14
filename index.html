@@ -12,17 +12,108 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       font-size: 1.1rem;
       background-color: #000000;
       color: #ffffff;
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* 全局动画关键帧 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        top: -100%;
+      }
+      100% {
+        top: 100%;
+      }
+    }
+
+    /* 滚动触发动画类 */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* 顶部导航 */
     header {
-      background: #000000;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
       color: white;
       padding: 1rem 2rem;
       display: flex;
@@ -31,11 +122,23 @@
       position: sticky;
       top: 0;
       z-index: 10;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    header.scrolled {
+      box-shadow: 0 4px 20px rgba(0, 120, 255, 0.3);
+      border-bottom: 1px solid rgba(0, 120, 255, 0.4);
     }
 
     header h1 {
       font-size: 1.8rem;
       font-weight: bold;
+      animation: fadeIn 0.8s ease;
+      background: linear-gradient(135deg, #fff, #8fb3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     nav a {
@@ -43,6 +146,30 @@
       margin-left: 1.5rem;
       text-decoration: none;
       font-size: 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 5px 10px;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #4aa8ff, #8f7bff);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    nav a:hover {
+      color: #8fb3ff;
+      transform: translateY(-2px);
+    }
+
+    nav a:hover::after {
+      width: 80%;
     }
 
     /* 头图 */
@@ -51,40 +178,83 @@
       align-items: center;
       justify-content: space-between;
       padding: 80px 10%;
-      background: linear-gradient(to right, #000000, #003da5);
+      background: linear-gradient(-45deg, #000000, #001a4d, #003da5, #0052d9);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
       color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 80%, rgba(74, 168, 255, 0.15), transparent 50%);
+      pointer-events: none;
     }
 
     .hero-content {
       max-width: 50%;
       padding-right: 30px;
+      animation: slideInLeft 1s ease;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-content h2 {
       font-size: 3rem;
       margin-bottom: 1rem;
+      animation: fadeInUp 1s ease 0.2s both;
     }
 
     .hero-content p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
       line-height: 1.5;
+      animation: fadeInUp 1s ease 0.4s both;
     }
 
     .hero-content .cta-btn {
       display: inline-block;
-      padding: 10px 20px;
+      padding: 12px 30px;
       background: white;
       color: #00286d;
       border-radius: 25px;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.3s;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+      animation: fadeInUp 1s ease 0.6s both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(0, 61, 165, 0.1);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .hero-content .cta-btn:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     .hero-content .cta-btn:hover {
       background: #f0f0f0;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
     }
 
     /* 头像 */
@@ -93,6 +263,15 @@
       width: 100%;
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      animation: slideInRight 1s ease;
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero img:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 12px 40px rgba(74, 168, 255, 0.5);
     }
 
     .section {
@@ -103,9 +282,30 @@
 
     .section h3 {
       font-size: 60px;
-      margin-bottom: 1rem;
-      border-bottom: 2px solid #333;
-      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 0.8rem;
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(135deg, #fff, #8fb3ff, #4aa8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #4aa8ff, #8f7bff);
+      transition: width 0.8s ease;
+      border-radius: 2px;
+    }
+
+    .section h3.animated::after {
+      width: 100%;
     }
 
     /* About Me 美化 */
@@ -125,6 +325,32 @@
       flex-direction: row;
       gap: 30px;
       align-items: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-inner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(74, 168, 255, 0.1), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .about-inner:hover::before {
+      opacity: 1;
+      animation: pulse 2s infinite;
+    }
+
+    .about-inner:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(0, 120, 255, 0.4);
+      border-color: rgba(74, 168, 255, 0.3);
     }
 
     .about-bar {
@@ -133,10 +359,25 @@
       border-radius: 999px;
       background: linear-gradient(to bottom, #4aa8ff, #8f7bff);
       flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-bar::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.5), transparent);
+      animation: shimmer 3s infinite;
     }
 
     .about-text-block {
       flex: 1;
+      position: relative;
+      z-index: 1;
     }
 
     .about-title-line {
@@ -145,12 +386,14 @@
       text-transform: uppercase;
       color: #8fb3ff;
       margin-bottom: 8px;
+      animation: fadeIn 0.8s ease;
     }
 
     .about-main-text {
       font-size: 1.05rem;
       color: #f5f5f5;
       margin-bottom: 16px;
+      animation: fadeInUp 0.8s ease;
     }
 
     .about-tags {
@@ -168,6 +411,15 @@
       border: 1px solid rgba(144, 178, 255, 0.4);
       color: #cfd9ff;
       backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .about-tag:hover {
+      background: rgba(74, 168, 255, 0.3);
+      border-color: rgba(74, 168, 255, 0.8);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 12px rgba(74, 168, 255, 0.4);
     }
 
     .about-note {
@@ -187,62 +439,169 @@
       flex-wrap: wrap;
       list-style: none;
       margin-top: 10px;
+      gap: 15px;
     }
 
     .skills li {
-      background: #00286d;
+      background: linear-gradient(135deg, #003da5, #00286d);
       color: white;
-      padding: 10px 15px;
-      margin: 5px;
-      border-radius: 20px;
-      font-size: 0.9rem;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      transition: all 0.4s ease;
+      cursor: default;
+      box-shadow: 0 4px 15px rgba(0, 61, 165, 0.3);
+      border: 1px solid rgba(74, 168, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skills li::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .skills li:hover::before {
+      width: 200px;
+      height: 200px;
+    }
+
+    .skills li:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(74, 168, 255, 0.6);
+      border-color: rgba(74, 168, 255, 0.8);
     }
 
     .projects {
       display: grid;
       grid-template-columns: 100%;
-      gap: 20px;
+      gap: 40px;
     }
 
     .project {
       display: grid;
-      background: #00286d;
-      padding: 20px;
+      background: linear-gradient(135deg, #00286d, #001a4d);
+      padding: 30px;
       margin-bottom: 10px;
-      border-radius: 12px;
+      border-radius: 20px;
       grid-template-columns: 50% 50%;
       width: 100%;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
-      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      gap: 20px;
+      border: 1px solid rgba(74, 168, 255, 0.2);
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(74, 168, 255, 0.1), transparent);
+      transition: left 0.8s ease;
+    }
+
+    .project:hover::before {
+      left: 100%;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(74, 168, 255, 0.4);
+      border-color: rgba(74, 168, 255, 0.5);
     }
 
     .project h4 {
       margin: 10px;
       margin-bottom: -10px;
-      font-size: 32px;
+      font-size: 36px;
+      background: linear-gradient(135deg, #fff, #8fb3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.3s ease;
+    }
+
+    .project:hover h4 {
+      transform: translateX(5px);
     }
 
     .project p {
       margin: 30px 10px 10px 10px;
       font-size: 0.95rem;
+      line-height: 1.8;
+      color: #e0e0e0;
     }
 
     .contact {
       text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, rgba(0, 40, 109, 0.3), rgba(0, 0, 0, 0.5));
+      border-radius: 20px;
+      border: 1px solid rgba(74, 168, 255, 0.2);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .contact p {
+      margin: 15px 0;
+      font-size: 1.1rem;
     }
 
     .contact a {
       margin: 0 10px;
       color: #5a9dff;
       text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+
+    .contact a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #4aa8ff, #8f7bff);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .contact a:hover {
+      color: #8fb3ff;
+      background: rgba(74, 168, 255, 0.1);
+    }
+
+    .contact a:hover::after {
+      width: 80%;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background: #222;
+      padding: 30px;
+      background: linear-gradient(135deg, #000000, #001a4d);
       color: white;
-      margin-top: 40px;
+      margin-top: 60px;
+      border-top: 1px solid rgba(74, 168, 255, 0.3);
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    footer p {
+      animation: fadeIn 1s ease;
     }
 
     .PDFButton {
@@ -254,15 +613,52 @@
       border-radius: 50px;
       padding-top: 10px;
       margin: 20px;
-      background-image: linear-gradient(to right, #000000, #003da5);
+      background: linear-gradient(-45deg, #003da5, #0052d9, #003da5, #001a4d);
+      background-size: 300% 300%;
       font-size: 1.1rem;
       text-decoration: none;
-      transition: all 100ms;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0, 61, 165, 0.4);
+      border: 1px solid rgba(74, 168, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      font-weight: 600;
+    }
+
+    .PDFButton::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease-out, height 0.4s ease-out;
+      z-index: 0;
+    }
+
+    .PDFButton:hover::before {
+      width: 800px;
+      height: 800px;
     }
 
     .PDFButton:hover {
-      color: rgb(200, 200, 200);
-      transform: translateY(-2px);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(74, 168, 255, 0.6);
+      background-position: 100% 50%;
+    }
+
+    .PDFButton:active {
+      transform: translateY(-1px);
+    }
+
+    .PDFButton span,
+    .PDFButton * {
+      position: relative;
+      z-index: 1;
     }
 
     .ProjectPicture {
@@ -270,14 +666,27 @@
       object-fit: cover;
       width: 100%;
       margin-top: 20px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
       display: block;
+      transition: all 0.4s ease;
+    }
+
+    .ProjectPicture:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 30px rgba(74, 168, 255, 0.5);
     }
 
     .YoutubeVideo {
       border-radius: 15px;
       width: 100%;
       height: 100%;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .YoutubeVideo:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(74, 168, 255, 0.4);
     }
 
     /* --- Arts Gallery --- */
@@ -296,7 +705,7 @@
 
     .art-item {
       width: 100%;
-      background: #0a0a0a;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
       border-radius: 14px;
       padding: 10px;
       display: flex;
@@ -304,6 +713,35 @@
       align-items: center;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
       cursor: zoom-in;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(74, 168, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .art-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 2;
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .art-item:hover::before {
+      opacity: 1;
+    }
+
+    .art-item:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(74, 168, 255, 0.4);
+      border-color: rgba(74, 168, 255, 0.5);
     }
 
     .art-item img {
@@ -312,18 +750,62 @@
       object-fit: contain;
       border-radius: 10px;
       display: block;
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .art-item:hover img {
+      filter: blur(5px) brightness(0.5);
+    }
+
+    .art-item-description {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 3;
+      padding: 20px;
+      width: 90%;
+      pointer-events: none;
+    }
+
+    .art-item-description h4 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #fff, #8fb3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .art-item-description p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #e0e0e0;
+    }
+
+    .art-item:hover .art-item-description {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateY(-5px);
     }
 
     /* Lightbox 全屏放大 */
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.92);
+      background: rgba(0, 0, 0, 0.95);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 1000;
       cursor: zoom-out;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.3s ease;
     }
 
     .lightbox.open {
@@ -334,7 +816,8 @@
       max-width: 90vw;
       max-height: 90vh;
       border-radius: 12px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 50px rgba(74, 168, 255, 0.5);
+      animation: fadeIn 0.4s ease, pulse 0.4s ease;
     }
 
     .lightbox-close-hint {
@@ -346,6 +829,7 @@
       color: #cccccc;
       opacity: 0.85;
       pointer-events: none;
+      animation: fadeInUp 0.5s ease 0.3s both;
     }
 
     /* 手机端自适应 */
@@ -435,19 +919,19 @@
   </section>
 
   <!-- 关于我 -->
-  <section class="section about" id="about">
-    <h3>About me</h3>
+  <section class="section about animate-on-scroll" id="about">
+    <h3 class="animate-on-scroll">About me</h3>
     <div class="about-inner">
       <div class="about-bar"></div>
       <div class="about-text-block">
         <div class="about-title-line">WHO I AM</div>
         <p class="about-main-text">
-          I’m <span class="about-highlight">Jerry Shizeng</span>, a freshman in the University of Southern California
+          I'm <span class="about-highlight">Jerry Shizeng</span>, a freshman in the University of Southern California
           School of Cinematic Arts, IMGD program. I love Dark Souls, CRPGs, sandbox worlds, and any game that
           rewards patience, curiosity, and careful design.
         </p>
         <p class="about-main-text">
-          Right now I’m exploring <span class="about-highlight">level design, system design, and narrative design</span>
+          Right now I'm exploring <span class="about-highlight">level design, system design, and narrative design</span>
           through small prototypes and student projects. I enjoy building worlds where the environment itself tells
           a story, and where every combat or puzzle encounter says something about the characters.
         </p>
@@ -459,7 +943,7 @@
           <span class="about-tag">CRPG Lover</span>
         </div>
         <p class="about-note">
-          I’m always learning, always iterating, and always trying to make the next project a little more ambitious
+          I'm always learning, always iterating, and always trying to make the next project a little more ambitious
           — and a little more fun to play.
         </p>
       </div>
@@ -467,8 +951,8 @@
   </section>
 
   <!-- 技能 -->
-  <section class="section skills" id="skills">
-    <h3>Skill</h3>
+  <section class="section skills animate-on-scroll" id="skills">
+    <h3 class="animate-on-scroll">Skill</h3>
     <ul>
       <li>Level Design</li>
       <li>3D Modeling</li>
@@ -478,10 +962,10 @@
   </section>
 
   <!-- 项目 -->
-  <section class="section" id="projects">
-    <h3>Projects</h3>
+  <section class="section animate-on-scroll" id="projects">
+    <h3 class="animate-on-scroll">Projects</h3>
     <div class="projects">
-      <div class="project">
+      <div class="project animate-on-scroll">
         <div>
           <h4>Involution</h4>
           <p>
@@ -505,7 +989,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project animate-on-scroll">
         <div>
           <h4>Explore Vinland</h4>
           <p>
@@ -531,7 +1015,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project animate-on-scroll">
         <div>
           <h4>Demigod Dungeon</h4>
           <p>
@@ -557,7 +1041,7 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project animate-on-scroll">
         <div>
           <h4>Epiphany's Journey</h4>
           <p>
@@ -570,10 +1054,10 @@
             it into Unreal Engine 5. There is an upper area and a lower area. In each area, there is only one bonfire.
             However, the bonfire can connect to 3-4 different path. There are 8 bosses within the game, only 4 of them
             are
-            “real”. Players need to defeat the real boss and destroy their statues in order to escape the island. I’m a
+            "real". Players need to defeat the real boss and destroy their statues in order to escape the island. I'm a
             serious fan of soul-like games, therefore making this project made me very glade and fulfilled.
           </p>
-          <a href="06-Digital Game-Epiphany’s Journey-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
+          <a href="06-Digital Game-Epiphany's Journey-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
         </div>
         <div>
           <iframe class="YoutubeVideo" src="https://www.youtube.com/embed/Bx0LAfco6Xc"
@@ -583,14 +1067,14 @@
         </div>
       </div>
 
-      <div class="project">
+      <div class="project animate-on-scroll">
         <div>
           <h4>The Lonely One</h4>
           <p>
             Medium：Digital Art Work<br>
             Year：2023<br>
             Size：Digital<br>
-            Description：A 3D Scene I made in Blender. It’s about a skeleton setting on a throne. The background story is
+            Description：A 3D Scene I made in Blender. It's about a skeleton setting on a throne. The background story is
             about greedy prince who being banished by the king. Even after many years, he is still holding his treasure
             chest. I use different rocks to build the cave, and I use the texture paint to design the treasure chest. I
             also learn about how to use the material ball to adjust the atmosphere of the environment.
@@ -604,32 +1088,41 @@
   </section>
 
   <!-- 艺术 Artwork -->
-  <section class="section" id="arts">
-    <h3>Arts</h3>
+  <section class="section animate-on-scroll" id="arts">
+    <h3 class="animate-on-scroll">Arts</h3>
 
     <div class="arts-grid">
-      <figure class="art-item">
+      <figure class="art-item animate-on-scroll">
         <img src="02-Digital Game-Involution-02-1.jpeg" alt="Artwork 1">
+        <div class="art-item-description">
+          <h4>Involution</h4>
+          <p>An adventure game with vine control mechanics. Creative exploration through dynamic terrain manipulation.</p>
+        </div>
       </figure>
 
-      <figure class="art-item">
+      <figure class="art-item animate-on-scroll">
         <img src="08-Digital Art Work-The Lonely One-1.jpeg" alt="Artwork 2">
+        <div class="art-item-description">
+          <h4>The Lonely One</h4>
+          <p>A 3D scene in Blender depicting a skeleton on a throne, telling a story of greed and banishment.</p>
+        </div>
       </figure>
 
-      <figure class="art-item">
-        <img src="YOUR-ART-3.jpeg" alt="Artwork 3">
+      <figure class="art-item animate-on-scroll">
+        <img src="04-Board Game-Explore Vinland-02-1.jpeg" alt="Artwork 3">
+        <div class="art-item-description">
+          <h4>Explore Vinland</h4>
+          <p>A strategic board game about farming and competition across four seasons with unique buffs.</p>
+        </div>
       </figure>
 
-      <figure class="art-item">
-        <img src="YOUR-ART-4.jpeg" alt="Artwork 4">
+      <figure class="art-item animate-on-scroll">
+        <img src="06-Digital Game-Epiphany's Journey-02-1.jpeg" alt="Artwork 4">
+        <div class="art-item-description">
+          <h4>Epiphany's Journey</h4>
+          <p>A soul-like level design project featuring interconnected areas, bonfires, and challenging boss encounters.</p>
+        </div>
       </figure>
-
-      <!-- 继续添加更多作品 -->
-      <!--
-      <figure class="art-item">
-        <img src="YOUR-ART-5.jpeg" alt="Artwork 5">
-      </figure>
-      -->
     </div>
   </section>
 
@@ -640,11 +1133,11 @@
   </div>
 
   <!-- 联系方式 -->
-  <section class="section contact" id="contact">
+  <section class="section contact animate-on-scroll" id="contact">
     <h3>Contact Me!</h3>
     <p>Contact me in the following media:</p>
     <p>
-      📧 Personal Email：<a href="mailto:jerryshizeng@gamil.com">jerryshizeng@gmail.com</a><br />
+      📧 Personal Email：<a href="mailto:jerryshizeng@gmail.com">jerryshizeng@gmail.com</a><br />
     </p>
   </section>
 
@@ -653,16 +1146,30 @@
     <p>&copy; 2025 Jerry Shizeng. All rights reserved.</p>
   </footer>
 
-  <!-- JS：Artwork 图片点击放大 -->
+  <!-- JS：Artwork 图片点击放大 + 滚动动画 -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
+      const header = document.querySelector('header');
 
+      // Lightbox 图片点击放大
       document.querySelectorAll('.arts-grid .art-item img').forEach(img => {
-        img.addEventListener('click', () => {
+        img.addEventListener('click', (e) => {
+          e.stopPropagation(); // 阻止事件冒泡
           lightboxImg.src = img.src;
           lightbox.classList.add('open');
+        });
+      });
+
+      // 也允许点击整个art-item来放大图片
+      document.querySelectorAll('.arts-grid .art-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          const img = item.querySelector('img');
+          if (img) {
+            lightboxImg.src = img.src;
+            lightbox.classList.add('open');
+          }
         });
       });
 
@@ -679,9 +1186,73 @@
           lightboxImg.src = '';
         }
       });
+
+      // 滚动触发动画（支持重置）
+      const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        
+        elements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementBottom = element.getBoundingClientRect().bottom;
+          const windowHeight = window.innerHeight;
+          
+          // 当元素进入视口时添加动画类
+          if (elementTop < windowHeight - 100 && elementBottom > 0) {
+            if (!element.classList.contains('animated')) {
+              element.classList.add('animated');
+            }
+          } 
+          // 当元素完全移出视口时移除动画类（支持重新触发）
+          else if (elementBottom < 0 || elementTop > windowHeight) {
+            element.classList.remove('animated');
+          }
+        });
+      };
+
+      // 导航栏滚动效果
+      const handleScroll = () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        
+        animateOnScroll();
+      };
+
+      // 初始检查
+      animateOnScroll();
+
+      // 滚动事件监听（使用节流优化性能）
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      // 为技能标签添加交错动画
+      const skillItems = document.querySelectorAll('.skills li');
+      skillItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+        item.style.animation = 'fadeInUp 0.6s ease forwards';
+        item.style.opacity = '0';
+      });
+
+      // 页面加载完成后的动画
+      setTimeout(() => {
+        skillItems.forEach(item => {
+          item.style.opacity = '1';
+        });
+      }, 100);
     });
   </script>
 
 </body>
 
 </html>
+
