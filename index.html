@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<!-- <html lang="zh-CN"></html> -->
 
 <head>
   <meta charset="UTF-8" />
@@ -26,7 +26,7 @@
       overflow-x: hidden;
     }
 
-    /* 全局动画关键帧 */
+    /* Global Animation Keyframes / 全局动画关键帧 */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -109,7 +109,7 @@
       }
     }
 
-    /* 滚动触发动画类 */
+    /* Scroll Trigger Animation Class / 滚动触发动画类 */
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(30px);
@@ -121,7 +121,7 @@
       transform: translateY(0);
     }
 
-    /* 顶部导航 */
+    /* Top Navigation / 顶部导航 */
     header {
       background: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(10px);
@@ -183,13 +183,13 @@
       width: 80%;
     }
 
-    /* 头图 */
+    /* Hero Section / 头图 */
     .hero {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 80px 10%;
-      background: linear-gradient(-45deg, #000000, #001a4d, #003da5, #0052d9);
+      background: linear-gradient(-45deg, #000000, #001a4d, #003da5);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       color: white;
@@ -268,7 +268,7 @@
       box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
     }
 
-    /* 头像 */
+    /* Avatar / 头像 */
     .hero img {
       max-width: 50%;
       width: 100%;
@@ -319,7 +319,7 @@
       width: 100%;
     }
 
-    /* About Me 美化 */
+    /* About Me Styling / About Me 美化 */
     .about {
       position: relative;
     }
@@ -695,12 +695,73 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
-    .YoutubeVideo:hover {
+    .ProjectWebPage {
+      border-radius: 15px;
+      width: 100%;
+      height: 100%;
+      min-height: 300px; /* Ensure visibility if parent collapses */
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .ProjectWebPage::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(74, 168, 255, 0.2), transparent 70%);
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+    
+    .ProjectWebPage:hover::before {
+        opacity: 0.8;
+    }
+
+    .link-card-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        transition: transform 0.5s ease;
+        opacity: 0.6;
+    }
+
+    .ProjectWebPage:hover .link-card-bg {
+        transform: scale(1.1);
+        opacity: 0.4;
+    }
+
+    .link-card-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .YoutubeVideo:hover, .ProjectWebPage:hover {
       transform: scale(1.02);
       box-shadow: 0 8px 30px rgba(74, 168, 255, 0.4);
     }
 
-    /* --- Arts Gallery --- */
+    /* --- Arts Gallery / 艺术画廊 --- */
     #arts {
       max-width: 1200px;
       margin: 50px auto;
@@ -737,11 +798,10 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
       opacity: 0;
       transition: opacity 0.4s ease;
       z-index: 2;
-      backdrop-filter: blur(8px);
       pointer-events: none;
     }
 
@@ -767,22 +827,22 @@
     }
 
     .art-item:hover img {
-      filter: blur(5px) brightness(0.5);
+       /* filter: blur(5px) brightness(0.5); */
     }
 
     .art-item-description {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      bottom: 0;
+      left: 0;
+      width: 100%;
       color: white;
       text-align: center;
       opacity: 0;
       transition: all 0.4s ease;
       z-index: 3;
       padding: 20px;
-      width: 90%;
       pointer-events: none;
+      transform: translateY(20px);
     }
 
     .art-item-description h4 {
@@ -802,10 +862,10 @@
 
     .art-item:hover .art-item-description {
       opacity: 1;
-      transform: translate(-50%, -50%) translateY(-5px);
+      transform: translateY(0);
     }
 
-    /* Lightbox 全屏放大 */
+    /* Lightbox Fullscreen Zoom / Lightbox 全屏放大 */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -843,7 +903,7 @@
       animation: fadeInUp 0.5s ease 0.3s both;
     }
 
-    /* 手机端自适应 */
+    /* Mobile Responsiveness / 手机端自适应 */
     @media (max-width: 800px) {
       .hero {
         flex-direction: column;
@@ -877,7 +937,7 @@
         grid-template-columns: 100%;
       }
 
-      .YoutubeVideo {
+      .YoutubeVideo, .ProjectWebPage {
         height: 400px;
       }
     }
@@ -903,24 +963,354 @@
         margin-right: 1rem;
       }
     }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgb(255, 255, 255);
+      color: white;
+      padding: 8px;
+      border-radius: 50%;
+      cursor: pointer;
+       transition: all 0.3s ease;
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(15deg);
+    }
+    
+    /* Icon toggling */
+    .theme-toggle .moon-icon {
+        display: none;
+    }
+
+    body.usc-theme .theme-toggle .sun-icon {
+        display: none;
+    }
+
+    body.usc-theme .theme-toggle .moon-icon {
+        display: block;
+    }
+    
+    body.usc-theme .theme-toggle {
+        border-color: #FFCC00;
+        color: #FFCC00;
+        box-shadow: none;
+    }
+    body.usc-theme .theme-toggle:hover {
+        background: rgba(255, 204, 0, 0.2);
+        color: #FFCC00;
+        border-color: #FFCC00;
+    }
+
+    /* USC Theme Styles - Bold Version */
+    body.usc-theme {
+        background-color: #FFF5D9; /* Light Gold/Cream background */
+        color: #550000;
+    }
+
+    /* Header */
+    body.usc-theme header {
+        background: #990000; /* Red Header */
+        border-bottom: 4px solid #FFCC00;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    body.usc-theme header.scrolled {
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        border-bottom: 4px solid #FFCC00;
+        background: #990000;
+    }
+
+    body.usc-theme header h1 {
+        background: none;
+        color: #FFCC00; /* Gold Text */
+        -webkit-text-fill-color: initial;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    body.usc-theme nav a {
+        color: #FFCC00; /* Gold Links */
+        font-weight: 500;
+    }
+
+    body.usc-theme nav a:hover {
+        color: #ffffff;
+        text-shadow: 0 0 5px #FFCC00;
+    }
+
+    body.usc-theme nav a::after {
+        background: #FFCC00;
+    }
+
+    /* Hero */
+    body.usc-theme .hero {
+        background: linear-gradient(135deg, #FFCC00); /* Gold Gradient */
+        color: #550000;
+        border-bottom: 5px solid #990000;
+    }
+
+    body.usc-theme .hero::before {
+        background: radial-gradient(circle at 80% 20%, rgba(153, 0, 0, 0.1), transparent 60%);
+    }
+    
+    body.usc-theme .hero p {
+        color: #770000;
+        font-weight: 600;
+    }
+
+    body.usc-theme .hero-content .cta-btn {
+        background: #990000;
+        color: #FFCC00;
+        border: 2px solid #FFCC00;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    body.usc-theme .hero-content .cta-btn::before {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    body.usc-theme .hero-content .cta-btn:hover {
+        background: #FFCC00;
+        color: #990000;
+        border-color: #990000;
+    }
+
+    body.usc-theme .hero img {
+         border: 4px solid #990000;
+         box-shadow: 10px 10px 0px rgba(255, 255, 255, 0.5);
+    }
+    
+    body.usc-theme .hero img:hover {
+        box-shadow: 15px 15px 0px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Section Headings */
+    body.usc-theme .section h3 {
+        background: none;
+        color: #990000;
+        -webkit-text-fill-color: initial;
+        border-bottom: 2px solid #FFCC00;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    body.usc-theme .section h3::after {
+        content: none;
+    }
+
+    /* About */
+    body.usc-theme .about-inner {
+        background: #ffffff;
+        border: 3px solid #990000;
+        box-shadow: 10px 10px 0px #FFCC00; /* Gold Shadow */
+    }
+    
+    body.usc-theme .about-inner p {
+        color: #333;
+    }
+
+    body.usc-theme .about-inner:hover {
+        box-shadow: 15px 15px 0px #FFCC00;
+        transform: translate(-5px, -5px);
+    }
+    body.usc-theme .about-inner:hover::before {
+        background: none;
+    }
+
+    body.usc-theme .about-bar {
+        background: linear-gradient(to bottom, #990000, #500000);
+    }
+
+    body.usc-theme .about-title-line {
+        color: #990000;
+    }
+
+    body.usc-theme .about-tag {
+        background: #990000;
+        border: 1px solid #990000;
+        color: #FFCC00;
+        font-weight: 500;
+    }
+
+    body.usc-theme .about-tag:hover {
+        background: #FFCC00;
+        color: #990000;
+        border-color: #990000;
+    }
+    
+    body.usc-theme .about-highlight {
+      color: #990000;
+      font-weight: bold;
+    }
+
+    /* Skills */
+    body.usc-theme .skills li {
+        background: #ffffff;
+        border: 2px solid #990000;
+        box-shadow: 5px 5px 0px rgba(153, 0, 0, 0.2);
+        color: #550000;
+    }
+
+    body.usc-theme .skills li:hover {
+        box-shadow: 7px 7px 0px #FFCC00;
+        border-color: #FFCC00;
+        background: #990000;
+        color: #FFCC00;
+    }
+
+    /* Projects */
+    body.usc-theme .project {
+        background: #ffffff;
+        border: 2px solid #FFCC00;
+        color: #333;
+    }
+    
+    body.usc-theme .project p {
+        color: #555;
+    }
+    
+    body.usc-theme .project:hover {
+        box-shadow: 10px 10px 0px #990000;
+        border-color: #990000;
+    }
+    
+    body.usc-theme .ProjectWebPage {
+         border: 4px solid #990000;
+         box-shadow: 5px 5px 0px #FFCC00;
+         background: #fff;
+         color: #990000;
+    }
+    
+    body.usc-theme .ProjectWebPage:hover {
+        border-color: #FFCC00;
+        box-shadow: 10px 10px 0px #990000;
+        background: #990000;
+        color: #FFCC00;
+    }
+    
+    body.usc-theme .ProjectWebPage::before {
+        display: none;
+    }
+
+    body.usc-theme .project::before {
+        background: none;
+    }
+
+    body.usc-theme .project h4 {
+        background: linear-gradient(135deg, #990000, #990000);;
+        color: #ffcc0000;
+        -webkit-text-fill-color: initial;
+        padding: 5px 10px;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 10px;
+        background-clip: text;
+    }
+
+    /* Contact */
+    body.usc-theme .contact {
+        background: #FFCC00; /* Gold Background */
+        border: 3px solid #990000;
+        box-shadow: 10px 10px 0px #990000;
+    }
+
+    body.usc-theme .contact p{
+        color: #550000;
+        font-weight: 500;
+    }
+
+    body.usc-theme .contact a {
+        color: #990000;
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    body.usc-theme .contact a::after {
+        background: #990000;
+    }
+
+    body.usc-theme .contact a:hover {
+        color: #ffffff;
+        background: #990000;
+    }
+
+    /* PDF Button */
+    body.usc-theme .PDFButton {
+        background: #990000;
+        border: 2px solid #FFCC00; 
+        color: #FFCC00;
+        box-shadow: 5px 5px 0px #000000;
+    }
+    body.usc-theme .PDFButton:hover {
+        box-shadow: 7px 7px 0px #000000;
+        background: #b30000;
+        transform: translateY(-2px);
+    }
+
+    /* Footer */
+    body.usc-theme footer {
+        background: #990000;
+        border-top: 5px solid #FFCC00;
+        color: #FFCC00;
+    }
+
+    /* Arts */
+    body.usc-theme .art-item {
+        background: #ffffff;
+        border: 2px solid #FFCC00;
+    }
+    body.usc-theme .art-item:hover {
+        box-shadow: 10px 10px 0px #990000;
+        border-color: #990000;
+    }
+    body.usc-theme .art-item-description h4 {
+        background: none;
+        color: #FFCC00;
+        -webkit-text-fill-color: initial;
+    }
+    
+    body.usc-theme .art-item-description p {
+        color: #555;
+    }
+
+    /* Lightbox */
+    body.usc-theme .lightbox-img {
+        box-shadow: 0 0 50px rgba(255, 204, 0, 0.5);
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- 顶部导航 -->
+  <!-- Top Navigation / 顶部导航 -->
   <header>
     <h1>Jerry</h1>
     <nav>
       <a href="#about">About Me</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#gamejam">Game Jam</a>
       <a href="#arts">Arts</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+      <!-- Sun Icon (for switching to USC Style) -->
+      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <!-- Moon Icon (for switching back to Original Style) -->
+      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
   </header>
 
-  <!-- 横幅 -->
+  <!-- Hero Banner / 横幅 -->
   <section class="hero">
     <div class="hero-content">
       <h2>Hi, I'm Jerry.</h2>
@@ -930,7 +1320,7 @@
     <img src="Main Page Self Portrait.jpg" alt="Jerry's hero image">
   </section>
 
-  <!-- 关于我 -->
+  <!-- About Me / 关于我 -->
   <section class="section about animate-on-scroll" id="about">
     <h3 class="animate-on-scroll">About me</h3>
     <div class="about-inner">
@@ -963,7 +1353,7 @@
     </div>
   </section>
 
-  <!-- 技能 -->
+  <!-- Skills / 技能 -->
   <section class="section skills animate-on-scroll" id="skills">
     <h3 class="animate-on-scroll">Skill</h3>
     <ul>
@@ -974,7 +1364,7 @@
     </ul>
   </section>
 
-  <!-- 项目 -->
+  <!-- Projects / 项目 -->
   <section class="section animate-on-scroll" id="projects">
     <h3 class="animate-on-scroll">Projects</h3>
     <div class="projects">
@@ -982,10 +1372,7 @@
         <div>
           <h4>Involution</h4>
           <p>
-            Medium：Digital Game<br>
-            Year：2024<br>
-            Size：Digital<br>
-            Description：An adventure game about exploring in an unknown world with the ability to control the vine.
+            An adventure game about exploring in an unknown world with the ability to control the vine.
             Players need to use the vine creatively in order to successfully explore through different levels. The vine
             can fit into various angle and terrain, serve as a tool to climb on. Players can also use the vine to
             destroy
@@ -1006,10 +1393,7 @@
         <div>
           <h4>Explore Vinland</h4>
           <p>
-            Medium：Board Game<br>
-            Year：2024<br>
-            Size：50cm x 50cm<br>
-            Description：Explore Vinland is a board game about farming and competing. In this game, two players need to
+            Explore Vinland is a board game about farming and competing. In this game, two players need to
             use their strategies to manager their farm and try to get a lot of money. There are various ways to combine
             the
             cards and create unique ways to get money. The order of the players is also imperative considering that
@@ -1032,10 +1416,7 @@
         <div>
           <h4>Demigod Dungeon</h4>
           <p>
-            Medium：Digital Game<br>
-            Year：2024<br>
-            Size：Digital<br>
-            Description：Demigod Dungeon is a team project that I made when I was in the NHSGA precollege program of
+            Demigod Dungeon is a team project that I made when I was in the NHSGA precollege program of
             Carnegie Mellon University. I am responsible for 2D environment art and 3D modelling. The experience of
             collaborating and teamworking is memorable for me. We combine the use of eye tracker into this game,
             allowing
@@ -1058,10 +1439,7 @@
         <div>
           <h4>Epiphany's Journey</h4>
           <p>
-            Medium：Digital Game<br>
-            Year：2023<br>
-            Size：Digital<br>
-            Description：This is a soul-like level design project about exploring through an island, fighting boss and
+            This is a soul-like level design project about exploring through an island, fighting boss and
             finding treasures. Initially, I made the level design in Blender. However, in order to playtesting it, I
             moved
             it into Unreal Engine 5. There is an upper area and a lower area. In each area, there is only one bonfire.
@@ -1084,10 +1462,7 @@
         <div>
           <h4>The Lonely One</h4>
           <p>
-            Medium：Digital Art Work<br>
-            Year：2023<br>
-            Size：Digital<br>
-            Description：A 3D Scene I made in Blender. It's about a skeleton setting on a throne. The background story is
+            A 3D Scene I made in Blender. It's about a skeleton setting on a throne. The background story is
             about greedy prince who being banished by the king. Even after many years, he is still holding his treasure
             chest. I use different rocks to build the cave, and I use the texture paint to design the treasure chest. I
             also learn about how to use the material ball to adjust the atmosphere of the environment.
@@ -1100,7 +1475,109 @@
     </div>
   </section>
 
-  <!-- 艺术 Artwork -->
+  <!-- Game Jam -->
+  <section class="section animate-on-scroll" id="gamejam">
+    <h3 class="animate-on-scroll">Game Jam</h3>
+    <div class="projects">
+
+      <!-- Good Night -->
+      <div class="project animate-on-scroll">
+        <div>
+          <h4>Good Night</h4>
+          <p>
+            This is an adventure game that I made with my friends at USC during the Ludum Dare 58 Event, 
+            and I was one of the artists. 
+            The theme for the game jam was “Collector”, 
+            which is why we made a game where the main character tries to collect items to unlock the hidden story that happens in his inner world.
+          </p>
+        </div>
+        <a href="https://ldjam.com/events/ludum-dare/58/good-night" target="_blank" class="ProjectWebPage">
+          <img src="Good Night.jpg" class="link-card-bg" alt="Good Night Game Cover">
+          <div class="link-card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Bubble Rapper -->
+      <div class="project animate-on-scroll">
+        <div>
+          <h4>Bubble Rapper</h4>
+          <p>
+            This is a rhythm game that our team “宇宙战舰队” made during the 2025 Global Game Jam, 
+            and I was the artist. The theme for the game jam was “Bubble”, 
+            which is why we created a rhythm game where you pop bubble wrap as a worker who dreams of being a rapper.
+          </p>
+        </div>
+        <a href="https://www.gmhub.com/game/6469" target="_blank" class="ProjectWebPage">
+          <img src="Bubble Rapper.png.webp" class="link-card-bg" alt="Bubble Rapper Game Cover">
+          <div class="link-card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Hey -->
+      <div class="project animate-on-scroll">
+        <div>
+          <h4>Hey</h4>
+          <p>
+            This is a two-player cooperative game that my teammates and 
+            I made during the 2024 Global Game Jam, and I was the designer. 
+            The theme for the game jam was “make me laugh”, 
+            so we made a funny game where the two players separately control an upper body and a lower body.
+          </p>
+        </div>
+        <a href="https://globalgamejam.org/games/2024/heibiepao-1" target="_blank" class="ProjectWebPage">
+          <img src="Hey.png" class="link-card-bg" alt="Hey Game Cover">
+          <div class="link-card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Deepseeker -->
+      <div class="project animate-on-scroll">
+        <div>
+          <h4>Deepseeker</h4>
+          <p>
+            Deepseeker is a roguelike game that I made with my team during the Ludum Dare 57 Event, 
+            and I was the designer/artist. The theme for the game jam was “Depths”, 
+            so we made a game about the depths of space and how we can seek within it.
+          </p>
+        </div>
+        <a href="https://ldjam.com/events/ludum-dare/57/deepseeker" target="_blank" class="ProjectWebPage">
+          <img src="Deepseeker.png" class="link-card-bg" alt="Deepseeker Game Cover">
+          <div class="link-card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- The Point Club -->
+      <div class="project animate-on-scroll">
+        <div>
+          <h4>The Point Club</h4>
+          <p>
+            The Point Club is a game that my teammates and 
+            I made during the Bitsy Micro Jam Game Memo 2025/4/24, 
+            and I was the artist/level designer. The game jam doesn’t have any theme restriction, 
+            but we are only allowed to develop on the platform Bitsy. 
+            We made a narrative game about Cybernetics with 3 different levels.
+          </p>
+        </div>
+        <a href="__the_point_club.html" target="_blank" class="ProjectWebPage">
+          <img src="The Point Club.png" class="link-card-bg" alt="The Point Club Game Cover">
+          <div class="link-card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Artworks / 绘画 -->
   <section class="section animate-on-scroll" id="arts">
     <h3 class="animate-on-scroll">Arts</h3>
 
@@ -1109,7 +1586,6 @@
         <img src="Dark Night.png" alt="Artwork 1">
         <div class="art-item-description">
           <h4>Dark Knight 黑夜与骑士</h4>
-          <!-- <p>An adventure game with vine control mechanics. Creative exploration through dynamic terrain manipulation.</p> -->
         </div>
       </figure>
 
@@ -1117,7 +1593,6 @@
         <img src="Into the Nightmare.png" alt="Artwork 2">
         <div class="art-item-description">
           <h4>Nightmare Kingdom 噩梦王国</h4>
-          <!-- <p>A 3D scene in Blender depicting a skeleton on a throne, telling a story of greed and banishment.</p> -->
         </div>
       </figure>
 
@@ -1125,7 +1600,6 @@
         <img src="Nightmare Joker.png" alt="Artwork 3">
         <div class="art-item-description">
           <h4>Knightmare 梦魇</h4>
-          <!-- <p>A strategic board game about farming and competition across four seasons with unique buffs.</p> -->
         </div>
       </figure>
 
@@ -1133,7 +1607,6 @@
         <img src="Death.png" alt="Artwork 5">
         <div class="art-item-description">
           <h4>Death&Birth 死亡与新生</h4>
-          <!-- <p>A soul-like level design project featuring interconnected areas, bonfires, and challenging boss encounters.</p> -->
         </div>
       </figure>
 
@@ -1141,14 +1614,12 @@
         <img src="Conquer the Abyss.png" alt="Artwork 4">
         <div class="art-item-description">
           <h4>Conquering the Abyss 征服深渊</h4>
-          <!-- <p>A soul-like level design project featuring interconnected areas, bonfires, and challenging boss encounters.</p> -->
         </div>
       </figure>
       <figure class="art-item animate-on-scroll">
         <img src="Fantasy.png" alt="Artwork 6">
         <div class="art-item-description">
           <h4>Fantasy 欢想</h4>
-          <!-- <p>A strategic board game about farming and competition across four seasons with unique buffs.</p> -->
         </div>
       </figure>
 
@@ -1156,52 +1627,54 @@
         <img src="Final Battle.png" alt="Artwork 7">
         <div class="art-item-description">
           <h4>Final Battle 最终决战</h4>
-          <!-- <p>A soul-like level design project featuring interconnected areas, bonfires, and challenging boss encounters.</p> -->
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
-        <img src="Odd Train.png" alt="Artwork 8">
+        <img src="Styx.png" alt="Artwork 8">
+        <div class="art-item-description">
+          <h4>Styx 冥河</h4>
+        </div>
+      </figure>
+
+      <figure class="art-item animate-on-scroll">
+        <img src="Odd Train.png" alt="Artwork 9">
         <div class="art-item-description">
           <h4>Odd Train 奇巧列车</h4>
-          <!-- <p>A soul-like level design project featuring interconnected areas, bonfires, and challenging boss encounters.</p> -->
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
-        <img src="Tree of Dream.png" alt="Artwork 9">
+        <img src="Tree of Dream.png" alt="Artwork 10">
         <div class="art-item-description">
           <h4>Tree of Hope 希望之树</h4>
-          <!-- <p>A soul-like level design project featuring interconnected areas, bonfires, and challenging boss encounters.</p> -->
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
-        <img src="Fate.png" alt="Artwork 10">
+        <img src="Fate.png" alt="Artwork 11">
         <div class="art-item-description">
           <h4>Fate 命运</h4>
-          <!-- <p>A soul-like level design project featuring interconnected areas, bonfires, and challenging boss encounters.</p> -->
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
-        <img src="Nap.png" alt="Artwork 10">
+        <img src="Nap.png" alt="Artwork 12">
         <div class="art-item-description">
           <h4>Daydreaming 白日梦</h4>
-          <!-- <p>A soul-like level design project featuring interconnected areas, bonfires, and challenging boss encounters.</p> -->
         </div>
       </figure>
     </div>
     </div>
   </section>
 
-  <!-- Lightbox 全屏展示容器 -->
+  <!-- Lightbox Fullscreen Container / Lightbox 全屏展示容器 -->
   <div id="lightbox" class="lightbox">
     <img id="lightbox-img" class="lightbox-img" src="" alt="">
     <div class="lightbox-close-hint">Click or press Esc to close</div>
   </div>
 
-  <!-- 联系方式 -->
+  <!-- Contact Info / 联系方式 -->
   <section class="section contact animate-on-scroll" id="contact">
     <h3>Contact Me!</h3>
     <p>Contact me in the following media:</p>
@@ -1216,19 +1689,41 @@
     </p>
   </section>
 
-  <!-- 页脚 -->
+  <!-- Footer / 页脚 -->
   <footer>
     <p>&copy; 2025 Jerry Shizeng. All rights reserved.</p>
   </footer>
 
-  <!-- JS：Artwork 图片点击放大 + 滚动动画 -->
+  <!-- JS: Artwork Image Click Zoom + Scroll Animation / JS：绘画图片点击放大 + 滚动动画 -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
       const header = document.querySelector('header');
 
-      // Lightbox 图片点击放大
+      // Theme Toggle Logic
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'usc') {
+        body.classList.add('usc-theme');
+      }
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+          body.classList.toggle('usc-theme');
+          
+          if (body.classList.contains('usc-theme')) {
+            localStorage.setItem('theme', 'usc');
+          } else {
+            localStorage.setItem('theme', 'original');
+          }
+        });
+      }
+
+      // Lightbox Image Click Zoom / Lightbox 图片点击放大
       document.querySelectorAll('.arts-grid .art-item img').forEach(img => {
         img.addEventListener('click', (e) => {
           e.stopPropagation(); // 阻止事件冒泡
@@ -1237,7 +1732,7 @@
         });
       });
 
-      // 也允许点击整个art-item来放大图片
+      // Also allow clicking the entire art-item to zoom image / 也允许点击整个art-item来放大图片
       document.querySelectorAll('.arts-grid .art-item').forEach(item => {
         item.addEventListener('click', (e) => {
           const img = item.querySelector('img');
@@ -1248,13 +1743,13 @@
         });
       });
 
-      // 点击遮罩关闭
+      // Click overlay to close / 点击遮罩关闭
       lightbox.addEventListener('click', () => {
         lightbox.classList.remove('open');
         lightboxImg.src = '';
       });
 
-      // ESC 关闭
+      // ESC to close / ESC 关闭
       document.addEventListener('keyup', (e) => {
         if (e.key === 'Escape') {
           lightbox.classList.remove('open');
@@ -1262,7 +1757,7 @@
         }
       });
 
-      // 滚动触发动画（支持重置）
+      // Scroll trigger animation (supports reset) / 滚动触发动画（支持重置）
       const animateOnScroll = () => {
         const elements = document.querySelectorAll('.animate-on-scroll');
 
@@ -1271,20 +1766,20 @@
           const elementBottom = element.getBoundingClientRect().bottom;
           const windowHeight = window.innerHeight;
 
-          // 当元素进入视口时添加动画类
+          // Add animation class when element enters viewport / 当元素进入视口时添加动画类
           if (elementTop < windowHeight - 100 && elementBottom > 0) {
             if (!element.classList.contains('animated')) {
               element.classList.add('animated');
             }
           }
-          // 当元素完全移出视口时移除动画类（支持重新触发）
+          // Remove animation class when element completely leaves viewport (supports re-triggering) / 当元素完全移出视口时移除动画类（支持重新触发）
           else if (elementBottom < 0 || elementTop > windowHeight) {
             element.classList.remove('animated');
           }
         });
       };
 
-      // 导航栏滚动效果
+      // Navigation bar scroll effect / 导航栏滚动效果
       const handleScroll = () => {
         if (window.scrollY > 50) {
           header.classList.add('scrolled');
@@ -1295,10 +1790,10 @@
         animateOnScroll();
       };
 
-      // 初始检查
+      // Initial check / 初始检查
       animateOnScroll();
 
-      // 滚动事件监听（使用节流优化性能）
+      // Scroll event listener (using throttling for performance optimization) / 滚动事件监听（使用节流优化性能）
       let ticking = false;
       window.addEventListener('scroll', () => {
         if (!ticking) {
@@ -1310,7 +1805,7 @@
         }
       });
 
-      // 为技能标签添加交错动画
+      // Add staggered animation for skill tags / 为技能标签添加交错动画
       const skillItems = document.querySelectorAll('.skills li');
       skillItems.forEach((item, index) => {
         item.style.animationDelay = `${index * 0.1}s`;
@@ -1318,7 +1813,7 @@
         item.style.opacity = '0';
       });
 
-      // 页面加载完成后的动画
+      // Animation after page load completion / 页面加载完成后的动画
       setTimeout(() => {
         skillItems.forEach(item => {
           item.style.opacity = '1';
