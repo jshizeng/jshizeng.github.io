@@ -558,6 +558,33 @@
       transform: translateX(5px);
     }
 
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 5px 10px 15px 10px;
+    }
+
+    .project-tag {
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(0, 40, 109, 0.6);
+      border: 1px solid rgba(74, 168, 255, 0.3);
+      color: white;
+      transition: all 0.3s ease;
+      cursor: default;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-tag:hover {
+      background: rgba(74, 168, 255, 0.2);
+      border-color: #4aa8ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(74, 168, 255, 0.3);
+      color: white;
+    }
+
     .project p {
       margin: 30px 10px 10px 10px;
       font-size: 0.95rem;
@@ -1227,6 +1254,21 @@
         background-clip: text;
     }
 
+    body.usc-theme .project-tag {
+        background: #ffffff;
+        border: 1px solid #990000;
+        color: #990000;
+        box-shadow: none;
+        font-weight: 500;
+    }
+
+    body.usc-theme .project-tag:hover {
+        background: #990000;
+        color: #FFCC00;
+        border-color: #990000;
+        box-shadow: 3px 3px 0px #FFCC00; 
+    }
+
     /* Contact */
     body.usc-theme .contact {
         background: #FFCC00; /* Gold Background */
@@ -1351,9 +1393,10 @@
         </p>
         <div class="about-tags">
           <span class="about-tag">USC IMGD Freshman</span>
-          <span class="about-tag">Level Design</span>
-          <span class="about-tag">Project Management</span>
-          <span class="about-tag">3D &amp; 2D Art</span>
+          <span class="about-tag">Game Designer</span>
+          <span class="about-tag">Level Designer</span>
+          <span class="about-tag">3D &amp; 2D Artist</span>
+          <span class="about-tag">Producer</span>
           <span class="about-tag">Soulslike Enthusiast</span>
           <span class="about-tag">CRPG Lover</span>
         </div>
@@ -1369,10 +1412,13 @@
   <section class="section skills animate-on-scroll" id="skills">
     <h3 class="animate-on-scroll">Skill</h3>
     <ul>
+      <li>Game Design</li>
       <li>Level Design</li>
-      <li>3D Modeling</li>
+      <li>3D Modeling/Environment</li>
       <li>2D Digital Art</li>
-      <li>Narrative Design</li>
+      <li>Unity</li>
+      <li>Unreal Engine 5</li>
+      <li>Blender</li>
     </ul>
   </section>
 
@@ -1391,6 +1437,11 @@
             the trees that stand in their way. The process of designing this game is a unique experience, I learn about
             how to use Unity3D and how a simple mechanic like controlling the vine can be so amusing.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">Unity3D</span>
+            <span class="project-tag">Adventure</span>
+            <span class="project-tag">Puzzle</span>
+          </div>
           <a href="02-Digital Game-Involution-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
         </div>
         <div>
@@ -1414,6 +1465,11 @@
             playtesting it is hard. The experience of playtesting the game allows me to understand that controlling the
             balance between different players is difficult but necessary.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">Board Game</span>
+            <span class="project-tag">Strategy</span>
+            <span class="project-tag">Farming</span>
+          </div>
           <a href="04-Board Game-Explore Vinland-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
         </div>
         <div>
@@ -1437,6 +1493,11 @@
             making
             animations through the process of making the game.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">Team Project</span>
+            <span class="project-tag">3D Art</span>
+            <span class="project-tag">Eye Tracker</span>
+          </div>
           <a href="07-Digital Game-Demigod Dungeon.pdf" target="_blank" class="PDFButton">Open PDF</a>
         </div>
         <div>
@@ -1460,6 +1521,11 @@
             "real". Players need to defeat the real boss and destroy their statues in order to escape the island. I'm a
             serious fan of soul-like games, therefore making this project made me very glade and fulfilled.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">Unreal Engine 5</span>
+            <span class="project-tag">Soul-like</span>
+            <span class="project-tag">Level Design</span>
+          </div>
           <a href="06-Digital Game-Epiphany's Journey-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
         </div>
         <div>
@@ -1479,6 +1545,11 @@
             chest. I use different rocks to build the cave, and I use the texture paint to design the treasure chest. I
             also learn about how to use the material ball to adjust the atmosphere of the environment.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">Blender</span>
+            <span class="project-tag">3D Scene</span>
+            <span class="project-tag">Environment Art</span>
+          </div>
           <a href="08-Digital Art Work-The Lonely One.pdf" target="_blank" class="PDFButton">Open PDF</a>
         </div>
         <img src="08-Digital Art Work-The Lonely One-1.jpeg" class="ProjectPicture" alt="The Lonely One">
@@ -1497,12 +1568,17 @@
         <div>
           <h4>Maskasin</h4>
           <p>
-            This is an adventure game that I made with my friends(SuperTeam) at USC during the GGJ2026 Event. 
+            This is an adventure game that I made with my friends(SuperTeam) at USC during the Global Game Jam 2026 Event. 
             I was the 3D artist and level designer.
             The theme for the game jam was “Mask”, 
             which is why we made a a top-down assassination game 
             where the player controls a mysterious, magical mask that can possess and control enemies.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">GGJ 2026</span>
+            <span class="project-tag">Assassination</span>
+            <span class="project-tag">3D Artist/Level Designer</span>
+          </div>
         </div>
         <a href="https://globalgamejam.org/games/2026/maskasin-3" target="_blank" class="ProjectWebPage">
           <img src="MaskasinArt.png" class="link-card-bg" alt="Maskasin Game Cover">
@@ -1522,6 +1598,11 @@
             The theme for the game jam was “Collector”, 
             which is why we made a game where the main character tries to collect items to unlock the hidden story that happens in his inner world.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">Ludum Dare 58</span>
+            <span class="project-tag">Adventure</span>
+            <span class="project-tag">2D Artist</span>
+          </div>
         </div>
         <a href="https://ldjam.com/events/ludum-dare/58/good-night" target="_blank" class="ProjectWebPage">
           <img src="Good Night.jpg" class="link-card-bg" alt="Good Night Game Cover">
@@ -1540,9 +1621,37 @@
             and I was the artist. The theme for the game jam was “Bubble”, 
             which is why we created a rhythm game where you pop bubble wrap as a worker who dreams of being a rapper.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">GGJ 2025</span>
+            <span class="project-tag">Rhythm</span>
+            <span class="project-tag">2D Artist</span>
+          </div>
         </div>
         <a href="https://www.gmhub.com/game/6469" target="_blank" class="ProjectWebPage">
           <img src="Bubble Rapper.png.webp" class="link-card-bg" alt="Bubble Rapper Game Cover">
+          <div class="link-card-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Deepseeker -->
+      <div class="project animate-on-scroll">
+        <div>
+          <h4>Deepseeker</h4>
+          <p>
+            Deepseeker is a roguelike game that I made with my team during the Ludum Dare 57 Event, 
+            and I was the designer/artist. The theme for the game jam was “Depths”, 
+            so we made a game about the depths of space and how we can seek within it.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Ludum Dare 57</span>
+            <span class="project-tag">Roguelike</span>
+            <span class="project-tag">Artist & Designer</span>
+          </div>
+        </div>
+        <a href="https://ldjam.com/events/ludum-dare/57/deepseeker" target="_blank" class="ProjectWebPage">
+          <img src="Deepseeker.png" class="link-card-bg" alt="Deepseeker Game Cover">
           <div class="link-card-content">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </div>
@@ -1559,27 +1668,14 @@
             The theme for the game jam was “make me laugh”, 
             so we made a funny game where the two players separately control an upper body and a lower body.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">GGJ 2024</span>
+            <span class="project-tag">Co-op</span>
+            <span class="project-tag">Game Designer</span>
+          </div>
         </div>
         <a href="https://globalgamejam.org/games/2024/heibiepao-1" target="_blank" class="ProjectWebPage">
           <img src="Hey.png" class="link-card-bg" alt="Hey Game Cover">
-          <div class="link-card-content">
-            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-          </div>
-        </a>
-      </div>
-
-      <!-- Deepseeker -->
-      <div class="project animate-on-scroll">
-        <div>
-          <h4>Deepseeker</h4>
-          <p>
-            Deepseeker is a roguelike game that I made with my team during the Ludum Dare 57 Event, 
-            and I was the designer/artist. The theme for the game jam was “Depths”, 
-            so we made a game about the depths of space and how we can seek within it.
-          </p>
-        </div>
-        <a href="https://ldjam.com/events/ludum-dare/57/deepseeker" target="_blank" class="ProjectWebPage">
-          <img src="Deepseeker.png" class="link-card-bg" alt="Deepseeker Game Cover">
           <div class="link-card-content">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </div>
@@ -1597,6 +1693,11 @@
             but we are only allowed to develop on the platform Bitsy. 
             We made a narrative game about Cybernetics with 3 different levels.
           </p>
+          <div class="project-tags">
+            <span class="project-tag">Bitsy Jam</span>
+            <span class="project-tag">Narrative</span>
+            <span class="project-tag">Artist/Level Designer</span>
+          </div>
         </div>
         <a href="__the_point_club.html" target="_blank" class="ProjectWebPage">
           <img src="The Point Club.png" class="link-card-bg" alt="The Point Club Game Cover">
