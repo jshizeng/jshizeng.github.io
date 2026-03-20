@@ -25,6 +25,39 @@
     html {
       scroll-behavior: smooth;
     }
+    
+    /* 
+     * Chinese Typography Optimization
+     * 中文排版优化
+     */
+     body.lang-zh, :lang(zh) body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Heiti SC", "Segoe UI", sans-serif;
+      text-align: justify; /* Justify text for better block appearance */
+      font-size: 1.2rem; /* Slightly larger font size for Chinese / 中文模式字体稍大 */
+    }
+
+    body.lang-zh h1, body.lang-zh h2, body.lang-zh h3, body.lang-zh h4,
+    :lang(zh) h1, :lang(zh) h2, :lang(zh) h3, :lang(zh) h4 {
+      font-weight: 700;
+      letter-spacing: 0.05em; /* Add slight spacing for headings */
+    }
+
+    body.lang-zh p, :lang(zh) p {
+      line-height: 1.8; /* Increase line height for Chinese readability */
+      letter-spacing: 0.02em;
+      margin-bottom: 1.2em; /* Add more breathing room between paragraphs */
+    }
+    
+    body.lang-zh .hero-content p {
+      font-size: 1.3rem; /* Adjust hero paragraph specifically */
+    }
+
+    /* Fix for Chinese text inside buttons/tags */
+    body.lang-zh .cta-btn, body.lang-zh .PDFButton, body.lang-zh .about-tag, body.lang-zh .project-tag,
+    :lang(zh) .cta-btn, :lang(zh) .PDFButton, :lang(zh) .about-tag, :lang(zh) .project-tag {
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      letter-spacing: 0.1em;
+    }
 
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -862,9 +895,9 @@
       z-index: 1;
     }
 
-    .art-item:hover img {
-       /* filter: blur(5px) brightness(0.5); */
-    }
+    /* .art-item:hover img {
+      filter: blur(5px) brightness(0.5); 
+    } */
 
     .art-item-description {
       position: absolute;
@@ -1336,6 +1369,71 @@
         color: #555;
     }
 
+    /* Language Toggle Button */
+    .lang-toggle {
+      background: rgba(0, 40, 109, 0.6);
+      border: 1px solid rgba(74, 168, 255, 0.5);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      font-weight: 600;
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+    }
+
+    .lang-toggle:hover {
+      background: rgba(74, 168, 255, 0.2);
+      border-color: #4aa8ff;
+      box-shadow: 0 0 10px rgba(74, 168, 255, 0.3);
+    }
+
+    body.usc-theme .lang-toggle {
+        background: #990000;
+        border: 2px solid #FFCC00;
+        color: #FFCC00;
+        box-shadow: 2px 2px 0px #000000;
+        border-radius: 0;
+    }
+    
+    body.usc-theme .lang-toggle:hover {
+        background: #b30000;
+        transform: translate(-1px, -1px);
+        box-shadow: 4px 4px 0px #000000;
+    }
+
+    /* Language Toggle Styles */
+    /* Language Toggle Button - Reset margin */
+    .lang-toggle {
+      margin-left: 0;
+    }
+    
+    /* Theme Toggle Button - Reset margin */
+    .theme-toggle {
+      margin-left: 0;
+    }
+
+    [lang="zh"] { display: none; }
+    /* Fix for display: unset causing block elements to become inline (losing margins) */
+    body.lang-zh [lang="zh"] { display: revert; } 
+    body.lang-zh [lang="en"] { display: none; }
+
+    /* Fallback for browsers not supporting revert properly or if specific override needed */
+    body.lang-zh p[lang="zh"] { display: block; }
+
+    /* Button and Header Container */
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* Add spacing between buttons */
+    }
+
     /* Lightbox */
     body.usc-theme .lightbox-img {
         box-shadow: 0 0 50px rgba(255, 204, 0, 0.5);
@@ -1347,63 +1445,76 @@
 
   <!-- Top Navigation / 顶部导航 -->
   <header>
-    <h1>Jerry</h1>
+    <h1 onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" style="cursor: pointer;">Jerry</h1>
     <nav>
-      <a href="#about">About Me</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#gamejam">Game Jam</a>
-      <a href="#game-experience">Game Experience</a>
-      <a href="#arts">Arts</a>
-      <a href="#contact">Contact</a>
+      <a href="#about"><span lang="en">About Me</span><span lang="zh">关于我</span></a>
+      <a href="#skills"><span lang="en">Skills</span><span lang="zh">技能</span></a>
+      <a href="#projects"><span lang="en">Projects</span><span lang="zh">项目</span></a>
+      <a href="#gamejam"><span lang="en">Game Jam</span><span lang="zh">Game Jam</span></a>
+      <a href="#game-experience"><span lang="en">Game Experience</span><span lang="zh">游戏经历</span></a>
+      <a href="#arts"><span lang="en">Arts</span><span lang="zh">艺术作品</span></a>
+      <a href="#contact"><span lang="en">Contact</span><span lang="zh">联系我</span></a>
     </nav>
-    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
-      <!-- Sun Icon (for switching to USC Style) -->
-      <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      <!-- Moon Icon (for switching back to Original Style) -->
-      <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-    </button>
+    <div class="header-controls"> <!-- Added wrapper for buttons -->
+      <button id="langToggle" class="lang-toggle" aria-label="Toggle Language">
+          <span lang="en">中文</span>
+          <span lang="zh">EN</span>
+      </button>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+        <!-- Sun Icon (for switching to USC Style) -->
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <!-- Moon Icon (for switching back to Original Style) -->
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
   </header>
 
   <!-- Hero Banner / 横幅 -->
   <section class="hero">
     <div class="hero-content">
-      <h2>Hi, I'm Jerry.</h2>
-      <p>I'm a gamer and a game maker. A freshman at USC studying games.</p>
-      <a href="#projects" class="cta-btn">See My Projects</a>
+      <h2><span lang="en">Hi, I'm Jerry.</span><span lang="zh">嗨，这里是杰瑞。</span></h2>
+      <p><span lang="en">I'm a gamer and a game maker. A freshman at USC studying games.</span><span lang="zh">我是一名玩家，也是一名游戏制作者。目前是南加州大学游戏专业的大一新生。</span></p>
+      <a href="#projects" class="cta-btn"><span lang="en">See My Projects</span><span lang="zh">查看我的项目</span></a>
     </div>
     <img src="Nightmare Joker.png" alt="Knightmare">
   </section>
 
   <!-- About Me / 关于我 -->
   <section class="section about animate-on-scroll" id="about">
-    <h3 class="animate-on-scroll">About me</h3>
+    <h3 class="animate-on-scroll"><span lang="en">About me</span><span lang="zh">关于我</span></h3>
     <div class="about-inner">
       <div class="about-bar"></div>
       <div class="about-text-block">
-        <div class="about-title-line">WHO I AM</div>
-        <p class="about-main-text">
+        <div class="about-title-line"><span lang="en">WHO I AM</span><span lang="zh">我是谁</span></div>
+        <p class="about-main-text" lang="en">
           I'm <span class="about-highlight">Jerry Shizeng</span>, a freshman at the University of Southern California
-          School of Cinematic Arts, studying <span class="about-highlight">Game Development and Interactive Design</span>. I love Dark Souls, CRPGs, sandbox worlds, and any game that
+          School of Cinematic Arts, studying <span class="about-highlight">Game Development and Interactive Design</span>. I love Dark Souls, CRPGs, sandbox, and any game that
           rewards patience, curiosity, and careful design.
         </p>
-        <p class="about-main-text">
+        <p class="about-main-text" lang="zh">
+          我是<span class="about-highlight">施郑杰瑞</span>，南加州大学电影艺术学院的一名大一新生，主修<span class="about-highlight">游戏开发与交互设计</span>。我喜欢玩《黑暗之魂》、CRPG、沙盒等游戏，以及任何在奖励玩家的耐心、好奇心上精心设计的游戏。
+        </p>
+        <p class="about-main-text" lang="en">
           Right now, I'm exploring <span class="about-highlight">level design, system design, and narrative design</span>
           through small prototypes and student projects. I enjoy building worlds where the environment itself tells
           a story, and where every combat or puzzle encounter says something about the characters.
         </p>
+        <p class="about-main-text" lang="zh">
+          目前，我正通过独立项目和学生合作项目联系<span class="about-highlight">关卡设计、系统设计和叙事设计</span>。我喜欢构建那些环境化叙事的世界，在那里的每一场战斗或解谜遭遇都能道出角色的某些特质。
+        </p>
         <div class="about-tags">
-          <span class="about-tag">USC IMGD Freshman</span>
-          <span class="about-tag">Game Designer</span>
-          <span class="about-tag">Level Designer</span>
-          <span class="about-tag">3D &amp; 2D Artist</span>
-          <span class="about-tag">Producer</span>
-          <span class="about-tag">Soulslike Enthusiast</span>
-          <span class="about-tag">CRPG Lover</span>
+          <span class="about-tag"><span lang="en">USC IMGD Freshman</span><span lang="zh">USC IMGD 大一新生</span></span>
+          <span class="about-tag"><span lang="en">Game Designer</span><span lang="zh">游戏设计师</span></span>
+          <span class="about-tag"><span lang="en">Level Designer</span><span lang="zh">关卡设计师</span></span>
+          <span class="about-tag"><span lang="en">3D &amp; 2D Artist</span><span lang="zh">3D &amp; 2D 美术师</span></span>
+          <span class="about-tag"><span lang="en">Producer</span><span lang="zh">制作人</span></span>
+          <span class="about-tag"><span lang="en">Soulslike Enthusiast</span><span lang="zh">魂系狂热粉/魂五</span></span>
+          <span class="about-tag"><span lang="en">Sandbox Expert</span><span lang="zh">沙盒专家</span></span>
+          <span class="about-tag"><span lang="en">CRPG Lover</span><span lang="zh">CRPG 爱好者</span></span>
         </div>
         <p class="about-note">
-          I'm always learning, always iterating, and always trying to make the next project a little more ambitious
-          — and a little more fun to play.
+          <span lang="en">I'm always learning, always iterating, and always trying to make the next project a little more ambitious — and a little more fun to play.</span>
+          <span lang="zh">我一直在学习，一直在迭代，并始终努力让下一个项目更具野心——同时也更好玩一点。</span>
         </p>
       </div>
     </div>
@@ -1411,12 +1522,12 @@
 
   <!-- Skills / 技能 -->
   <section class="section skills animate-on-scroll" id="skills">
-    <h3 class="animate-on-scroll">Skill</h3>
+    <h3 class="animate-on-scroll"><span lang="en">Skill</span><span lang="zh">技能</span></h3>
     <ul>
-      <li>Game Design</li>
-      <li>Level Design</li>
-      <li>3D Modeling/Environment</li>
-      <li>2D Digital Art</li>
+      <li><span lang="en">Game Design</span><span lang="zh">游戏设计</span></li>
+      <li><span lang="en">Level Design</span><span lang="zh">关卡设计</span></li>
+      <li><span lang="en">3D Modeling/Environment</span><span lang="zh">3D 建模/场景</span></li>
+      <li><span lang="en">2D Digital Art</span><span lang="zh">2D 数字艺术</span></li>
       <li>Unity</li>
       <li>Unreal Engine 5</li>
       <li>Blender</li>
@@ -1425,12 +1536,12 @@
 
   <!-- Projects / 项目 -->
   <section class="section animate-on-scroll" id="projects">
-    <h3 class="animate-on-scroll">Projects</h3>
+    <h3 class="animate-on-scroll"><span lang="en">Projects</span><span lang="zh">项目</span></h3>
     <div class="projects">
       <div class="project animate-on-scroll">
         <div>
           <h4>Involution</h4>
-          <p>
+          <p lang="en">
             An adventure game about exploring in an unknown world with the ability to control the vine.
             Players need to use the vine creatively in order to successfully explore through different levels. The vine
             can fit into various angle and terrain, serve as a tool to climb on. Players can also use the vine to
@@ -1438,12 +1549,15 @@
             the trees that stand in their way. The process of designing this game is a unique experience, I learn about
             how to use Unity3D and how a simple mechanic like controlling the vine can be so amusing.
           </p>
+          <p lang="zh">
+            一款关于在未知世界中利用藤蔓进行探索的冒险游戏。玩家需要创造性地利用藤蔓来成功穿越不同的关卡。藤蔓可以适应各种角度和地形，作为攀爬的工具。玩家还可以使用藤蔓摧毁挡路的树木。设计这款游戏的过程是一次独特的体验，我学会了如何使用 Unity3D，以及像控制藤蔓这样简单的机制也可以如此有趣。
+          </p>
           <div class="project-tags">
             <span class="project-tag">Unity3D</span>
-            <span class="project-tag">Adventure</span>
-            <span class="project-tag">Puzzle</span>
+            <span class="project-tag"><span lang="en">Adventure</span><span lang="zh">冒险</span></span>
+            <span class="project-tag"><span lang="en">Puzzle</span><span lang="zh">解谜</span></span>
           </div>
-          <a href="02-Digital Game-Involution-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
+          <a href="02-Digital Game-Involution-02.pdf" target="_blank" class="PDFButton"><span lang="en">Open PDF</span><span lang="zh">打开 PDF</span></a>
         </div>
         <div>
           <iframe class="YoutubeVideo" src="https://www.youtube.com/embed/6vLlf51hJYE" title="Involution"
@@ -1456,7 +1570,7 @@
       <div class="project animate-on-scroll">
         <div>
           <h4>Explore Vinland</h4>
-          <p>
+          <p lang="en">
             Explore Vinland is a board game about farming and competing. In this game, two players need to
             use their strategies to manager their farm and try to get a lot of money. There are various ways to combine
             the
@@ -1466,12 +1580,15 @@
             playtesting it is hard. The experience of playtesting the game allows me to understand that controlling the
             balance between different players is difficult but necessary.
           </p>
+          <p lang="zh">
+            《探索文兰》是一款关于农业和竞争的桌面游戏。在游戏中，两名玩家需要运用策略经营农场并争取获得更多金钱。玩家可以通过组合卡牌创造独特的赚钱方式。考虑到游戏中有四个季节且带有特殊的增益效果，玩家的行动顺序也至关重要。制作这个桌面游戏很容易，但测试过程却很艰难。游戏测试的经历让我明白，平衡不同玩家之间的体验是困难但必要的。
+          </p>
           <div class="project-tags">
-            <span class="project-tag">Board Game</span>
-            <span class="project-tag">Strategy</span>
-            <span class="project-tag">Farming</span>
+            <span class="project-tag"><span lang="en">Board Game</span><span lang="zh">桌面游戏</span></span>
+            <span class="project-tag"><span lang="en">Strategy</span><span lang="zh">策略</span></span>
+            <span class="project-tag"><span lang="en">Farming</span><span lang="zh">模拟经营</span></span>
           </div>
-          <a href="04-Board Game-Explore Vinland-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
+          <a href="04-Board Game-Explore Vinland-02.pdf" target="_blank" class="PDFButton"><span lang="en">Open PDF</span><span lang="zh">打开 PDF</span></a>
         </div>
         <div>
           <iframe class="YoutubeVideo" src="https://www.youtube.com/embed/GHTqYhepmQM" title="Explore Vinland"
@@ -1484,7 +1601,7 @@
       <div class="project animate-on-scroll">
         <div>
           <h4>Demigod Dungeon</h4>
-          <p>
+          <p lang="en">
             Demigod Dungeon is a team project that I made when I was in the NHSGA precollege program of
             Carnegie Mellon University. I am responsible for 2D environment art and 3D modelling. The experience of
             collaborating and teamworking is memorable for me. We combine the use of eye tracker into this game,
@@ -1494,12 +1611,15 @@
             making
             animations through the process of making the game.
           </p>
+          <p lang="zh">
+            《半神地牢》是我在卡内基梅隆大学 NHSGA 暑期项目期间制作的一个团队项目。我负责 2D 环境美术和 3D 建模。这次合作开发的经历对我来说很难忘。我们将眼动仪结合到游戏中，允许玩家像美杜莎一样用眼神攻击敌人。另一方面，玩家扮演的角色阿拉克涅可以像蜘蛛一样攀爬并射出蛛网进行移动。我在制作游戏的过程中学习了纹理贴图和动画制作。
+          </p>
           <div class="project-tags">
-            <span class="project-tag">Team Project</span>
-            <span class="project-tag">3D Art</span>
-            <span class="project-tag">Eye Tracker</span>
+            <span class="project-tag"><span lang="en">Team Project</span><span lang="zh">团队项目</span></span>
+            <span class="project-tag"><span lang="en">3D Art</span><span lang="zh">3D 美术</span></span>
+            <span class="project-tag"><span lang="en">Eye Tracker</span><span lang="zh">眼动仪</span></span>
           </div>
-          <a href="07-Digital Game-Demigod Dungeon.pdf" target="_blank" class="PDFButton">Open PDF</a>
+          <a href="07-Digital Game-Demigod Dungeon.pdf" target="_blank" class="PDFButton"><span lang="en">Open PDF</span><span lang="zh">打开 PDF</span></a>
         </div>
         <div>
           <iframe class="YoutubeVideo" src="https://www.youtube.com/embed/nIs4eCqKdqw" title="Demigod Dungeon"
@@ -1512,7 +1632,7 @@
       <div class="project animate-on-scroll">
         <div>
           <h4>Epiphany's Journey</h4>
-          <p>
+          <p lang="en">
             This is a soul-like level design project about exploring through an island, fighting boss and
             finding treasures. Initially, I made the level design in Blender. However, in order to playtesting it, I
             moved
@@ -1522,12 +1642,15 @@
             "real". Players need to defeat the real boss and destroy their statues in order to escape the island. I'm a
             serious fan of soul-like games, therefore making this project made me very glade and fulfilled.
           </p>
+          <p lang="zh">
+            这是一个关于探索岛屿、对抗 BOSS 和寻找宝藏的魂类关卡设计项目。最初，我在 Blender 中完成了关卡设计。然而，为了进行游戏测试，我将其迁移到了 Unreal Engine 5 中。游戏分为上层区域和下层区域。每个区域只有一个篝火，但篝火可以连接到 3-4 条不同的路径。游戏中有 8 个 BOSS，但其中只有 4 个是“真实”的。玩家需要击败真正的 BOSS 并摧毁雕像才能逃离岛屿。我是魂类游戏的忠实粉丝，因此制作这个项目让我感到非常满足和愉快。
+          </p>
           <div class="project-tags">
             <span class="project-tag">Unreal Engine 5</span>
-            <span class="project-tag">Soul-like</span>
-            <span class="project-tag">Level Design</span>
+            <span class="project-tag"><span lang="en">Soul-like</span><span lang="zh">魂类</span></span>
+            <span class="project-tag"><span lang="en">Level Design</span><span lang="zh">关卡设计</span></span>
           </div>
-          <a href="06-Digital Game-Epiphany's Journey-02.pdf" target="_blank" class="PDFButton">Open PDF</a>
+          <a href="06-Digital Game-Epiphany's Journey-02.pdf" target="_blank" class="PDFButton"><span lang="en">Open PDF</span><span lang="zh">打开 PDF</span></a>
         </div>
         <div>
           <iframe class="YoutubeVideo" src="https://www.youtube.com/embed/Bx0LAfco6Xc"
@@ -1540,20 +1663,51 @@
       <div class="project animate-on-scroll">
         <div>
           <h4>The Lonely One</h4>
-          <p>
+          <p lang="en">
             A 3D Scene I made in Blender. It's about a skeleton setting on a throne. The background story is
             about greedy prince who being banished by the king. Even after many years, he is still holding his treasure
             chest. I use different rocks to build the cave, and I use the texture paint to design the treasure chest. I
             also learn about how to use the material ball to adjust the atmosphere of the environment.
           </p>
+          <p lang="zh">
+            这是我在 Blender 中制作的一个 3D 场景。画面描绘了一具坐在王座上的骷髅。背景故事关于一个被国王流放的贪婪王子。即使多年过去，他依然紧紧抱着他的宝箱。我使用不同的岩石构建了洞穴，并使用纹理绘制设计了宝箱。我还学习了如何使用材质球来调整环境的氛围。
+          </p>
           <div class="project-tags">
             <span class="project-tag">Blender</span>
-            <span class="project-tag">3D Scene</span>
-            <span class="project-tag">Environment Art</span>
+            <span class="project-tag"><span lang="en">3D Scene</span><span lang="zh">3D 场景</span></span>
+            <span class="project-tag"><span lang="en">Environment Art</span><span lang="zh">环境美术</span></span>
           </div>
-          <a href="08-Digital Art Work-The Lonely One.pdf" target="_blank" class="PDFButton">Open PDF</a>
+          <a href="08-Digital Art Work-The Lonely One.pdf" target="_blank" class="PDFButton"><span lang="en">Open PDF</span><span lang="zh">打开 PDF</span></a>
         </div>
         <img src="08-Digital Art Work-The Lonely One-1.jpeg" class="ProjectPicture" alt="The Lonely One">
+      </div>
+
+      <div class="project animate-on-scroll">
+        <div>
+          <h4>Ninjia Chef</h4>
+          <p lang="en">
+            Ninjia Chef is a team project that I made when I was in the NHSGA precollege program of
+            Carnegie Mellon University. I am responsible for 3D modelling and some 2D art. 
+            This game is a remake of the classic arcade game Tempest, but with a twist of ninja and cooking. 
+          </p>
+          <p lang="zh">
+            《忍者厨师》是我在卡内基梅隆大学 NHSGA 暑期项目期间制作的一个团队项目。我负责 3D 建模和一些 2D 美术。这款游戏是经典街机游戏《Tempest》的重制版，但加入了忍者和烹饪的元素。
+          </p>
+          <div class="project-tags">
+            <span class="project-tag"><span lang="en">Team Project</span><span lang="zh">团队项目</span></span>
+            <span class="project-tag"><span lang="en">3D Art</span><span lang="zh">3D 美术</span></span>
+            <span class="project-tag"><span lang="en">Tempest Remake</span><span lang="zh">Tempest 重制版</span></span>
+          </div>
+
+        </div>
+        <!-- Ninjia Chef WebGL Container with Fullscreen Button -->
+        <div id="ninjia-chef-container" style="width: 100%; aspect-ratio: 16/9; min-height: 400px; background: #000; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); position: relative;">
+            <iframe id="ninjia-chef-frame" src="NinjiaChef/index.html" style="width: 100%; height: 100%; border: none; display: block;" allow="autoplay; fullscreen; vr" allowfullscreen></iframe>
+            <!-- Fullscreen Toggle Button -->
+            <button id="ninjia-chef-fullscreen-btn" aria-label="Toggle Fullscreen" style="position: absolute; bottom: 15px; right: 15px; z-index: 20; background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 8px; cursor: pointer; padding: 8px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; backdrop-filter: blur(4px);">
+                <svg id="fullscreen-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+            </button>
+        </div>
       </div>
 
     </div>
@@ -1561,24 +1715,27 @@
 
   <!-- Game Jam -->
   <section class="section animate-on-scroll" id="gamejam">
-    <h3 class="animate-on-scroll">Game Jam</h3>
+    <h3 class="animate-on-scroll"><span lang="en">Game Jam</span><span lang="zh">Game Jam</span></h3>
     <div class="projects">
 
       <!-- Maskasin -->
       <div class="project animate-on-scroll">
         <div>
           <h4>Maskasin</h4>
-          <p>
+          <p lang="en">
             This is an adventure game that I made with my friends(SuperTeam) at USC during the Global Game Jam 2026 Event. 
             I was the 3D artist and level designer.
             The theme for the game jam was “Mask”, 
             which is why we made a a top-down assassination game 
             where the player controls a mysterious, magical mask that can possess and control enemies.
           </p>
+          <p lang="zh">
+            这是我与 USC 的朋友们（SuperTeam）在 2026 年 Global Game Jam 期间制作的一款冒险游戏。我担任 3D 美术和关卡设计师。本次 Game Jam 的主题是“面具”，因此我们制作了一款俯视角暗杀游戏，玩家控制一个神秘的魔法面具，它可以附身并控制敌人。
+          </p>
           <div class="project-tags">
             <span class="project-tag">GGJ 2026</span>
-            <span class="project-tag">Assassination</span>
-            <span class="project-tag">3D Artist/Level Designer</span>
+            <span class="project-tag"><span lang="en">Assassination</span><span lang="zh">暗杀</span></span>
+            <span class="project-tag"><span lang="en">3D Artist/Level Designer</span><span lang="zh">3D 美术/关卡设计</span></span>
           </div>
         </div>
         <a href="https://globalgamejam.org/games/2026/maskasin-3" target="_blank" class="ProjectWebPage">
@@ -1593,16 +1750,19 @@
       <div class="project animate-on-scroll">
         <div>
           <h4>Good Night</h4>
-          <p>
+          <p lang="en">
             This is an adventure game that I made with my friends at USC during the Ludum Dare 58 Event, 
             and I was one of the artists. 
             The theme for the game jam was “Collector”, 
             which is why we made a game where the main character tries to collect items to unlock the hidden story that happens in his inner world.
           </p>
+          <p lang="zh">
+            这是我与 USC 的朋友们在 Ludum Dare 58 期间制作的一款冒险游戏，我是其中一名美术。本次 Game Jam 的主题是“收藏家”，因此我们制作了一款游戏，主角通过收集物品来解锁隐藏在内心世界中的故事。
+          </p>
           <div class="project-tags">
             <span class="project-tag">Ludum Dare 58</span>
-            <span class="project-tag">Adventure</span>
-            <span class="project-tag">2D Artist</span>
+            <span class="project-tag"><span lang="en">Adventure</span><span lang="zh">冒险</span></span>
+            <span class="project-tag"><span lang="en">2D Artist</span><span lang="zh">2D 美术</span></span>
           </div>
         </div>
         <a href="https://ldjam.com/events/ludum-dare/58/good-night" target="_blank" class="ProjectWebPage">
@@ -1617,15 +1777,18 @@
       <div class="project animate-on-scroll">
         <div>
           <h4>Bubble Rapper</h4>
-          <p>
+          <p lang="en">
             This is a rhythm game that our team “宇宙战舰队” made during the 2025 Global Game Jam, 
             and I was the artist. The theme for the game jam was “Bubble”, 
             which is why we created a rhythm game where you pop bubble wrap as a worker who dreams of being a rapper.
           </p>
+          <p lang="zh">
+            这是我们团队“宇宙战舰队”在 2025 年 Global Game Jam 期间制作的一款节奏游戏，我担任美术。本次 Game Jam 的主题是“气泡”，因此我们创作了一款节奏游戏，玩家扮演一名梦想成为说唱歌手的工人，通过捏气泡纸来打节奏。
+          </p>
           <div class="project-tags">
             <span class="project-tag">GGJ 2025</span>
-            <span class="project-tag">Rhythm</span>
-            <span class="project-tag">2D Artist</span>
+            <span class="project-tag"><span lang="en">Rhythm</span><span lang="zh">节奏</span></span>
+            <span class="project-tag"><span lang="en">2D Artist</span><span lang="zh">2D 美术</span></span>
           </div>
         </div>
         <a href="https://www.gmhub.com/game/6469" target="_blank" class="ProjectWebPage">
@@ -1640,15 +1803,18 @@
       <div class="project animate-on-scroll">
         <div>
           <h4>Deepseeker</h4>
-          <p>
+          <p lang="en">
             Deepseeker is a roguelike game that I made with my team during the Ludum Dare 57 Event, 
             and I was the designer/artist. The theme for the game jam was “Depths”, 
             so we made a game about the depths of space and how we can seek within it.
           </p>
+          <p lang="zh">
+            Deepseeker 是我和我的团队在 Ludum Dare 57 期间制作的一款 Roguelike 游戏，我担任设计师/美术。本次 Game Jam 的主题是“Depths（深处）”，所以我们制作了一款关于在宇宙深处探索的游戏。
+          </p>
           <div class="project-tags">
             <span class="project-tag">Ludum Dare 57</span>
             <span class="project-tag">Roguelike</span>
-            <span class="project-tag">Artist & Designer</span>
+            <span class="project-tag"><span lang="en">Artist & Designer</span><span lang="zh">美术 & 设计师</span></span>
           </div>
         </div>
         <a href="https://ldjam.com/events/ludum-dare/57/deepseeker" target="_blank" class="ProjectWebPage">
@@ -1663,16 +1829,19 @@
       <div class="project animate-on-scroll">
         <div>
           <h4>Hey</h4>
-          <p>
+          <p lang="en">
             This is a two-player cooperative game that my teammates and 
             I made during the 2024 Global Game Jam, and I was the designer. 
             The theme for the game jam was “make me laugh”, 
             so we made a funny game where the two players separately control an upper body and a lower body.
           </p>
+          <p lang="zh">
+            这是一款我和我的队友在 2024 年 Global Game Jam 期间制作的双人合作游戏，我担任设计师。本次 Game Jam 的主题是“make me laugh（逗我笑）”，所以我们制作了一款搞笑游戏，两名玩家分别控制角色的上半身和下半身。
+          </p>
           <div class="project-tags">
             <span class="project-tag">GGJ 2024</span>
-            <span class="project-tag">Co-op</span>
-            <span class="project-tag">Game Designer</span>
+            <span class="project-tag"><span lang="en">Co-op</span><span lang="zh">合作</span></span>
+            <span class="project-tag"><span lang="en">Game Designer</span><span lang="zh">游戏策划</span></span>
           </div>
         </div>
         <a href="https://globalgamejam.org/games/2024/heibiepao-1" target="_blank" class="ProjectWebPage">
@@ -1687,17 +1856,20 @@
       <div class="project animate-on-scroll">
         <div>
           <h4>The Point Club</h4>
-          <p>
+          <p lang="en">
             The Point Club is a game that my teammates and 
             I made during the Bitsy Micro Jam Game Memo 2025/4/24, 
             and I was the artist/level designer. The game jam doesn’t have any theme restriction, 
             but we are only allowed to develop on the platform Bitsy. 
             We made a narrative game about Cybernetics with 3 different levels.
           </p>
+          <p lang="zh">
+            The Point Club 是我和我的队友在 Bitsy Micro Jam Game Memo 2025/4/24 期间制作的游戏，我担任美术/关卡设计。本次 Game Jam 没有任何主题限制，但我们只能在 Bitsy 平台上开发。我们制作了一款关于控制论的叙事游戏，包含 3 个不同的关卡。
+          </p>
           <div class="project-tags">
             <span class="project-tag">Bitsy Jam</span>
-            <span class="project-tag">Narrative</span>
-            <span class="project-tag">Artist/Level Designer</span>
+            <span class="project-tag"><span lang="en">Narrative</span><span lang="zh">叙事</span></span>
+            <span class="project-tag"><span lang="en">Artist/Level Designer</span><span lang="zh">美术/关卡设计</span></span>
           </div>
         </div>
         <a href="__the_point_club.html" target="_blank" class="ProjectWebPage">
@@ -1713,18 +1885,21 @@
 
     <!-- Game Experience / 游戏经历 -->
   <section class="section animate-on-scroll" id="game-experience">
-    <h3 class="animate-on-scroll">Game Experience</h3>
+    <h3 class="animate-on-scroll"><span lang="en">Game Experience</span><span lang="zh">游戏经历</span></h3>
     <div class="projects">
       
       <!-- Experience Item -->
       <div class="project animate-on-scroll">
         <div>
-          <h4>Soulslike Enthusiast</h4>
-          <p>
+          <h4><span lang="en">Soulslike Enthusiast</span><span lang="zh">魂系狂热粉/魂五</span></h4>
+          <p lang="en">
             I have been playing Soulslike games for many years and have a deep understanding of their design principles and mechanics, which are what make these games so captivating. 
             I have completed Dark Souls, Bloodborne, and Elden Ring multiple times. 
             These experiences have given me a profound understanding of the level design, combat system, enemy placement, and fragmented narrative of these challenging action RPGs. 
             I also create my own video edits of Soulslike games.
+          </p>
+          <p lang="zh">
+            我玩魂类游戏多年，对它们的设计原则和机制有着深刻的理解，这也正是这些游戏的魅力所在。我已多次通关《黑暗之魂》、《血源诅咒》和《艾尔登法环》。这些经历让我对这些充满挑战的动作 RPG 的关卡设计、战斗系统、敌人配置和碎片化叙事有了深刻的理解。我自己也制作了一些魂类游戏的视频剪辑。
           </p>
           <div class="project-tags">
             <span class="project-tag">Dark Souls Series (500hr+)</span>
@@ -1739,11 +1914,14 @@
 
       <div class="project animate-on-scroll">
         <div>
-          <h4>Sandbox Expert</h4>
-          <p>
+          <h4><span lang="en">Sandbox Expert</span><span lang="zh">沙盒专家</span></h4>
+          <p lang="en">
             I've played countless sandbox games, such as Minecraft, Don't Starve, Terraria, Stardew Valley, Kenshi, Valheim, Palworld, Enshrouded, No Man's Sky, Grounded, The Forest, Sons of the Forest, and My Time at Sandrock. 
             Among all these sandbox games, my favorite is Kenshi, and I've even made many game guide videos for it. 
             In short, the openness and freedom of these sandbox games have given me an unusual understanding of system design.
+          </p>
+          <p lang="zh">
+            我玩过无数沙盒游戏... 在所有这些沙盒游戏中，我最喜欢的是《Kenshi》，甚至为它制作了许多攻略视频。简而言之，这些沙盒游戏的开放性和自由度让我对系统设计有了不同寻常的理解。
           </p>
           <div class="project-tags">
             <span class="project-tag">Kenshi (450hr+)</span>
@@ -1759,10 +1937,13 @@
 
       <div class="project animate-on-scroll">
         <div>
-          <h4>CRPG Lover</h4>
-          <p>
+          <h4><span lang="en">CRPG Lover</span><span lang="zh">CRPG 爱好者</span></h4>
+          <p lang="en">
             I am passionate about CRPGs and have spent countless hours immersed in their rich stories, complex characters, and intricate world-building. 
             I have played Baldur's Gate 3, Divinity: Original Sin 2, and Pathfinder: Wrath of the Righteous.
+          </p>
+          <p lang="zh">
+             我热爱 CRPG，花费了无数个小时沉浸在其丰富的故事、复杂的角色和错综复杂的世界构建中。我玩过《博德之门3》、《神界：原罪2》和《开拓者：正义之怒》。
           </p>
           <div class="project-tags">
             <span class="project-tag">Baldur's Gate 3 (250hr+)</span>
@@ -1775,16 +1956,20 @@
 
       <div class="project animate-on-scroll">
         <div>
-          <h4>Anything!</h4>
-          <p>
+          <h4><span lang="en">Anything!</span><span lang="zh">无所不玩！</span></h4>
+          <p lang="en">
             I have also played many other games across various genres, and I'm still exploring new games and genres all the time!
           </p>
+          <p lang="zh">
+            我还玩过许多其他类型的游戏，并且一直都在探索新的游戏和类型！
+          </p>
           <div class="project-tags">
-            <span class="project-tag">Monster Hunter Series (200hr+)</span>
-            <span class="project-tag">Red Dead Redemption 2 (200hr+)</span>
-            <span class="project-tag">Total War: WARHAMMER III (150hr+)</span>
-            <span class="project-tag">Astlibra (150hr+)</span>
-            <span class="project-tag">Fire Emblem Engage (100hr+)</span>
+            <span class="project-tag">Monster Hunter Series 怪物猎人系列游戏 (200hr+)</span>
+            <span class="project-tag">Red Dead Redemption 2 荒野大嫖客2 (200hr+)</span>
+            <span class="project-tag">Total War: WARHAMMER III 全面战争战锤3 (250hr+)</span>
+            <span class="project-tag">Astlibra 神之天平 (150hr+)</span>
+            <span class="project-tag">Fire Emblem Engage 火焰纹章结合 (100hr+)</span>
+            <span class="project-tag">Sword of Justice 逆水寒手游 (70hr+)</span>
           </div>
         </div>
         <div>
@@ -1797,89 +1982,89 @@
 
   <!-- Artworks / 绘画 -->
   <section class="section animate-on-scroll" id="arts">
-    <h3 class="animate-on-scroll">Arts</h3>
+    <h3 class="animate-on-scroll"><span lang="en">Arts</span><span lang="zh">艺术作品</span></h3>
 
     <div class="arts-grid">
       <figure class="art-item animate-on-scroll">
         <img src="Dark Night.png" alt="Artwork 1">
         <div class="art-item-description">
-          <h4>Dark Knight 黑夜与骑士</h4>
+          <h4><span lang="en">Dark Knight</span><span lang="zh">黑夜与骑士</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Into the Nightmare.png" alt="Artwork 2">
         <div class="art-item-description">
-          <h4>Nightmare Kingdom 噩梦王国</h4>
+          <h4><span lang="en">Nightmare Kingdom</span><span lang="zh">噩梦王国</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Nightmare Joker.png" alt="Artwork 3">
         <div class="art-item-description">
-          <h4>Knightmare 梦魇</h4>
+          <h4><span lang="en">Knightmare</span><span lang="zh">梦魇</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Death.png" alt="Artwork 5">
         <div class="art-item-description">
-          <h4>Death&Birth 死亡与新生</h4>
+          <h4><span lang="en">Death & Birth</span><span lang="zh">死亡与新生</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Conquer the Abyss.png" alt="Artwork 4">
         <div class="art-item-description">
-          <h4>Conquering the Abyss 征服深渊</h4>
+          <h4><span lang="en">Conquering the Abyss</span><span lang="zh">征服深渊</span></h4>
         </div>
       </figure>
       <figure class="art-item animate-on-scroll">
         <img src="Fantasy.png" alt="Artwork 6">
         <div class="art-item-description">
-          <h4>Fantasy 欢想</h4>
+          <h4><span lang="en">Fantasy</span><span lang="zh">欢想</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Final Battle.png" alt="Artwork 7">
         <div class="art-item-description">
-          <h4>Final Battle 最终决战</h4>
+          <h4><span lang="en">Final Battle</span><span lang="zh">最终决战</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Styx.png" alt="Artwork 8">
         <div class="art-item-description">
-          <h4>Styx 冥河</h4>
+          <h4><span lang="en">Styx</span><span lang="zh">冥河</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Odd Train.png" alt="Artwork 9">
         <div class="art-item-description">
-          <h4>Odd Train 奇巧列车</h4>
+          <h4><span lang="en">Odd Train</span><span lang="zh">奇巧列车</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Tree of Dream.png" alt="Artwork 10">
         <div class="art-item-description">
-          <h4>Tree of Hope 希望之树</h4>
+          <h4><span lang="en">Tree of Hope</span><span lang="zh">希望之树</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Fate.png" alt="Artwork 11">
         <div class="art-item-description">
-          <h4>Fate 命运</h4>
+          <h4><span lang="en">Fate</span><span lang="zh">命运</span></h4>
         </div>
       </figure>
 
       <figure class="art-item animate-on-scroll">
         <img src="Nap.png" alt="Artwork 12">
         <div class="art-item-description">
-          <h4>Daydreaming 白日梦</h4>
+          <h4><span lang="en">Daydreaming</span><span lang="zh">白日梦</span></h4>
         </div>
       </figure>
     </div>
@@ -1889,15 +2074,15 @@
   <!-- Lightbox Fullscreen Container / Lightbox 全屏展示容器 -->
   <div id="lightbox" class="lightbox">
     <img id="lightbox-img" class="lightbox-img" src="" alt="">
-    <div class="lightbox-close-hint">Click or press Esc to close</div>
+    <div class="lightbox-close-hint"><span lang="en">Click or press Esc to close</span><span lang="zh">点击或按 Esc 关闭</span></div>
   </div>
 
   <!-- Contact Info / 联系方式 -->
   <section class="section contact animate-on-scroll" id="contact">
-    <h3>Contact Me!</h3>
-    <p>Contact me in the following media:</p>
+    <h3><span lang="en">Contact Me!</span><span lang="zh">联系我！</span></h3>
+    <p><span lang="en">Contact me in the following media:</span><span lang="zh">通过以下方式联系我：</span></p>
     <p>
-      Personal Email：<a href="mailto:jerryshizeng@gmail.com">jerryshizeng@gmail.com</a><br />
+      <span lang="en">Personal Email：</span><span lang="zh">个人邮箱：</span><a href="mailto:jerryshizeng@gmail.com">jerryshizeng@gmail.com</a><br />
     </p>
     <p>
       Linkedin：<a href="https://www.linkedin.com/in/jerry-shizeng-6093bb388/" target="_blank">Jerry Shizeng</a><br />
@@ -1909,7 +2094,7 @@
 
   <!-- Footer / 页脚 -->
   <footer>
-    <p>&copy; 2025-2026 Jerry Shizeng. All rights reserved.</p>
+    <p>&copy; 2025-2026 <span lang="en">Jerry Shizeng. All rights reserved.</span><span lang="zh">施郑杰瑞. 保留所有权利。</span></p>
   </footer>
 
   <!-- JS: Artwork Image Click Zoom + Scroll Animation / JS：绘画图片点击放大 + 滚动动画 -->
@@ -1921,12 +2106,19 @@
 
       // Theme Toggle Logic
       const themeToggle = document.getElementById('themeToggle');
+      const langToggle = document.getElementById('langToggle');
       const body = document.body;
       
       // Check for saved theme preference
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'usc') {
         body.classList.add('usc-theme');
+      }
+
+      // Check for saved language preference
+      const savedLang = localStorage.getItem('lang');
+      if (savedLang === 'zh') {
+        body.classList.add('lang-zh');
       }
 
       if (themeToggle) {
@@ -1937,6 +2129,18 @@
             localStorage.setItem('theme', 'usc');
           } else {
             localStorage.setItem('theme', 'original');
+          }
+        });
+      }
+
+      if (langToggle) {
+        langToggle.addEventListener('click', function() {
+          body.classList.toggle('lang-zh');
+          
+          if (body.classList.contains('lang-zh')) {
+            localStorage.setItem('lang', 'zh');
+          } else {
+            localStorage.setItem('lang', 'en');
           }
         });
       }
@@ -1966,6 +2170,61 @@
         lightbox.classList.remove('open');
         lightboxImg.src = '';
       });
+
+      // Ninjia Chef WebGL Fullscreen Logic
+      const chefContainer = document.getElementById('ninjia-chef-container');
+      const chefFullscreenBtn = document.getElementById('ninjia-chef-fullscreen-btn');
+      
+      if (chefContainer && chefFullscreenBtn) {
+        const fullscreenIconPath = chefFullscreenBtn.querySelector('path');
+        
+        chefFullscreenBtn.addEventListener('click', (e) => {
+          e.stopPropagation(); // Prevent bubbling issues
+          toggleFullScreen();
+        });
+
+        function toggleFullScreen() {
+          if (!document.fullscreenElement) {
+            if (chefContainer.requestFullscreen) {
+              chefContainer.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+              });
+            } else if (chefContainer.webkitRequestFullscreen) { /* Safari */
+              chefContainer.webkitRequestFullscreen();
+            } else if (chefContainer.msRequestFullscreen) { /* IE11 */
+              chefContainer.msRequestFullscreen();
+            }
+          } else {
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+              document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+              document.msExitFullscreen();
+            }
+          }
+        }
+
+        // Update icon based on fullscreen state
+        function updateFullscreenIcon() {
+            if (!fullscreenIconPath) return;
+            
+            if (document.fullscreenElement) {
+                // Change to "Exit Fullscreen" icon (contract arrows)
+                fullscreenIconPath.setAttribute('d', 'M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3');
+                chefFullscreenBtn.setAttribute('aria-label', 'Exit Fullscreen');
+            } else {
+                // Change to "Enter Fullscreen" icon (expand arrows)
+                fullscreenIconPath.setAttribute('d', 'M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3');
+                chefFullscreenBtn.setAttribute('aria-label', 'Enter Fullscreen');
+            }
+        }
+
+        document.addEventListener('fullscreenchange', updateFullscreenIcon);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenIcon);
+        document.addEventListener('mozfullscreenchange', updateFullscreenIcon);
+        document.addEventListener('MSFullscreenChange', updateFullscreenIcon);
+      }
 
       // ESC to close / ESC 关闭
       document.addEventListener('keyup', (e) => {
