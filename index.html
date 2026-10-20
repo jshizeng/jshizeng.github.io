@@ -625,8 +625,8 @@
       color: #e0e0e0;
     }
 
-    /* Game Tier Board / 游戏档位展示 */
-    .game-tier-board {
+    /* Favorite Games / 推荐游戏展示 */
+    .favorite-games-board {
       background:
         radial-gradient(circle at 16% -10%, rgba(120, 198, 255, 0.25), transparent 42%),
         radial-gradient(circle at 110% 115%, rgba(97, 116, 255, 0.2), transparent 48%),
@@ -639,7 +639,7 @@
       overflow: hidden;
     }
 
-    .game-tier-board::before {
+    .favorite-games-board::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -647,7 +647,7 @@
       pointer-events: none;
     }
 
-    .tier-board-title {
+    .favorite-games-title {
       margin: 0 0 8px 0;
       font-size: 2.05rem;
       line-height: 1.3;
@@ -659,95 +659,23 @@
       z-index: 1;
     }
 
-    .tier-board-desc {
-      margin: 0 0 18px 0;
+    .favorite-games-desc {
+      margin: 0 0 22px 0;
       color: #c0d4ff;
       font-size: 0.95rem;
       position: relative;
       z-index: 1;
     }
 
-    .tier-row {
+    .favorite-games-grid {
       display: grid;
-      grid-template-columns: 76px 1fr;
-      gap: 16px;
-      align-items: start;
-      margin-bottom: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
       position: relative;
       z-index: 1;
     }
 
-    .tier-row:last-child {
-      margin-bottom: 0;
-    }
-
-    .tier-badge {
-      min-height: 96px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: 800;
-      color: #fff;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: inset 0 0 24px rgba(255, 255, 255, 0.08), 0 8px 20px rgba(0, 0, 0, 0.25);
-    }
-
-    .tier-s .tier-badge {
-      background: linear-gradient(145deg, #0a1833 0%, #3ea2ff 58%, #b5dfff 100%);
-      border-color: rgba(208, 232, 255, 0.95);
-      box-shadow:
-        inset 0 0 34px rgba(231, 243, 255, 0.32),
-        0 0 0 2px rgba(33, 79, 158, 0.4),
-        0 0 18px rgba(79, 166, 255, 0.75),
-        0 0 36px rgba(62, 154, 255, 0.52),
-        0 12px 28px rgba(13, 44, 99, 0.45);
-      color: #eef7ff;
-      text-shadow: 0 0 8px rgba(199, 230, 255, 0.65), 0 2px 5px rgba(8, 20, 43, 0.5);
-    }
-
-    .tier-a .tier-badge {
-      background: linear-gradient(145deg, #09172f 0%, #3186f2 56%, #8fc3ff 100%);
-      border-color: rgba(171, 212, 255, 0.82);
-      box-shadow:
-        inset 0 0 28px rgba(218, 238, 255, 0.22),
-        0 0 12px rgba(72, 154, 255, 0.54),
-        0 0 24px rgba(49, 120, 232, 0.35),
-        0 10px 24px rgba(12, 40, 92, 0.38);
-      color: #e7f3ff;
-      text-shadow: 0 0 6px rgba(168, 211, 255, 0.45), 0 2px 4px rgba(8, 20, 43, 0.45);
-    }
-
-    .tier-b .tier-badge {
-      background: linear-gradient(145deg, #081325, #2767c9);
-      border-color: rgba(137, 184, 247, 0.6);
-      box-shadow: inset 0 0 18px rgba(210, 231, 255, 0.14), 0 7px 17px rgba(14, 45, 101, 0.3);
-      color: #ddebff;
-    }
-
-    .tier-c .tier-badge {
-      background: linear-gradient(145deg, #070f1e, #1d4da2);
-      border-color: rgba(113, 157, 224, 0.5);
-      box-shadow: inset 0 0 11px rgba(190, 219, 255, 0.08), 0 5px 12px rgba(11, 35, 79, 0.24);
-      color: #d0e3ff;
-    }
-
-    .tier-d .tier-badge {
-      background: linear-gradient(145deg, #060b16, #143877);
-      border-color: rgba(90, 132, 198, 0.44);
-      box-shadow: inset 0 0 8px rgba(170, 206, 255, 0.06), 0 4px 9px rgba(8, 27, 61, 0.2);
-      color: #bfd7fb;
-    }
-
-    .tier-games {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .tier-game-card {
+    .favorite-game-card {
       background: linear-gradient(160deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03));
       border: 1px solid rgba(143, 179, 255, 0.3);
       border-radius: 14px;
@@ -756,13 +684,14 @@
       backdrop-filter: blur(6px);
     }
 
-    .tier-game-card:hover {
+    .favorite-game-card:hover {
       transform: translateY(-5px) scale(1.01);
       border-color: rgba(166, 198, 255, 0.75);
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
     }
 
-    .tier-game-card img {
+    .favorite-game-card img,
+    .favorite-game-art {
       width: 100%;
       height: 190px;
       object-fit: cover;
@@ -770,29 +699,36 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
-    .tier-game-body {
+    .favorite-game-art {
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: radial-gradient(circle at 50% 35%, rgba(214, 178, 106, 0.32), transparent 42%), linear-gradient(145deg, #26364b, #101722 68%, #59452c);
+      color: #f2dfb9;
+      font-family: Georgia, serif;
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-align: center;
+      text-shadow: 0 2px 10px #000;
+    }
+
+    .favorite-game-body {
       padding: 10px 12px 12px 12px;
     }
 
-    .tier-game-body h5 {
+    .favorite-game-body h5 {
       margin: 0 0 6px 0;
       font-size: 0.98rem;
       color: #ffffff;
       letter-spacing: 0.02em;
     }
 
-    .tier-game-body p {
+    .favorite-game-body p {
       margin: 0;
       font-size: 0.85rem;
       line-height: 1.6;
       color: #d4def4;
-    }
-
-    .tier-help {
-      margin-top: 14px;
-      color: #8fb3ff;
-      font-size: 0.86rem;
-      opacity: 0.95;
     }
 
     .contact {
@@ -1180,30 +1116,22 @@
         height: 400px;
       }
 
-      .tier-row {
-        grid-template-columns: 1fr;
-      }
-
-      .tier-badge {
-        min-height: 56px;
-        width: 100%;
-      }
-
-      .tier-games {
+      .favorite-games-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
     @media (max-width: 680px) {
-      .game-tier-board {
+      .favorite-games-board {
         padding: 20px;
       }
 
-      .tier-games {
+      .favorite-games-grid {
         grid-template-columns: 1fr;
       }
 
-      .tier-game-card img {
+      .favorite-game-card img,
+      .favorite-game-art {
         height: 200px;
       }
     }
@@ -1499,81 +1427,34 @@
         box-shadow: 3px 3px 0px #FFCC00; 
     }
 
-    body.usc-theme .game-tier-board {
+    body.usc-theme .favorite-games-board {
       background: #ffffff;
       border: 2px solid #990000;
       box-shadow: 8px 8px 0px #FFCC00;
     }
 
-    body.usc-theme .tier-board-title {
+    body.usc-theme .favorite-games-title {
       background: linear-gradient(135deg, #990000, #990000);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    body.usc-theme .tier-board-desc,
-    body.usc-theme .tier-help {
+    body.usc-theme .favorite-games-desc {
       color: #7a2a00;
     }
 
-    body.usc-theme .tier-game-card {
+    body.usc-theme .favorite-game-card {
       background: #fffdf8;
       border: 1px solid #990000;
     }
 
-    body.usc-theme .tier-game-body h5 {
+    body.usc-theme .favorite-game-body h5 {
       color: #990000;
     }
 
-    body.usc-theme .tier-game-body p {
+    body.usc-theme .favorite-game-body p {
       color: #5d4a38;
-    }
-
-    body.usc-theme .tier-s .tier-badge {
-      background: linear-gradient(145deg, #b30000 0%, #ffdd66 58%, #fff1b3 100%);
-      border-color: rgba(255, 245, 204, 1);
-      box-shadow:
-        inset 0 0 34px rgba(255, 249, 223, 0.38),
-        0 0 0 2px rgba(153, 0, 0, 0.45),
-        0 0 18px rgba(255, 201, 46, 0.82),
-        0 0 36px rgba(255, 180, 0, 0.62),
-        0 12px 26px rgba(120, 0, 0, 0.42);
-      color: #fffbe5;
-      text-shadow: 0 0 8px rgba(255, 246, 210, 0.7), 0 2px 4px rgba(80, 0, 0, 0.45);
-    }
-
-    body.usc-theme .tier-a .tier-badge {
-      background: linear-gradient(145deg, #9e0000 0%, #ffcd3a 56%, #ffe48f 100%);
-      border-color: rgba(255, 230, 156, 0.95);
-      box-shadow:
-        inset 0 0 28px rgba(255, 245, 209, 0.28),
-        0 0 12px rgba(255, 184, 24, 0.58),
-        0 0 24px rgba(255, 166, 0, 0.36),
-        0 9px 21px rgba(125, 0, 0, 0.34);
-      color: #fff8d8;
-      text-shadow: 0 0 6px rgba(255, 236, 184, 0.45), 0 2px 4px rgba(80, 0, 0, 0.42);
-    }
-
-    body.usc-theme .tier-b .tier-badge {
-      background: linear-gradient(145deg, #780000, #dca200);
-      border-color: rgba(228, 190, 102, 0.72);
-      box-shadow: inset 0 0 16px rgba(255, 236, 181, 0.14), 0 6px 14px rgba(110, 0, 0, 0.24);
-      color: #fff1bf;
-    }
-
-    body.usc-theme .tier-c .tier-badge {
-      background: linear-gradient(145deg, #640000, #b98500);
-      border-color: rgba(205, 164, 79, 0.58);
-      box-shadow: inset 0 0 10px rgba(255, 224, 150, 0.08), 0 4px 10px rgba(95, 0, 0, 0.2);
-      color: #ffe9aa;
-    }
-
-    body.usc-theme .tier-d .tier-badge {
-      background: linear-gradient(145deg, #4b0000, #936900);
-      border-color: rgba(171, 131, 55, 0.5);
-      box-shadow: inset 0 0 8px rgba(255, 214, 128, 0.06), 0 3px 8px rgba(75, 0, 0, 0.16);
-      color: #f4d891;
     }
 
     /* Contact */
@@ -2222,174 +2103,67 @@
         </div>
       </div>
 
-      <div class="game-tier-board animate-on-scroll">
-        <h4 class="tier-board-title"><span lang="en">My Game Tier List</span><span lang="zh">个人游戏排行</span></h4>
-        <p class="tier-board-desc"><span lang="en">Purely personal game rankings, intended to share my gaming experiences and opinions.</span><span lang="zh">纯粹个人的游戏排行，旨在分享我的游戏体验和观点。</span></p>
+      <div class="favorite-games-board animate-on-scroll">
+        <h4 class="favorite-games-title"><span lang="en">My Favorite Games</span><span lang="zh">我推荐的游戏</span></h4>
+        <p class="favorite-games-desc"><span lang="en">A collection of games I love and recommend, each with a story worth sharing.</span><span lang="zh">这里收录了我喜爱并愿意推荐的游戏，每一款都有值得分享的故事。</span></p>
 
-        <div class="tier-row tier-s">
-          <div class="tier-badge">S</div>
-          <div class="tier-games">
-            <article class="tier-game-card">
-              <img src="GameTierCover/Dark Souls Cover.png" alt="S Tier Game Cover 01">
-              <div class="tier-game-body">
-                <h5><span lang="en">DARK SOULS: REMASTERED</span><span lang="zh">黑暗之魂：重制版</span></h5>
-                <p lang="en">I played this game during the pandemic in 9th grade, and the sense of isolation and the epic journey it portrayed inspired me at the time. It also made me fall in love with heroism. The excellent level design left a deep impression on me, and I will never forget the surprise of taking the elevator back to the Firelink Shrine from the Undead Burg.</p>
-                <p lang="zh">我在9年级疫情期间通关的游戏，那种孤独感与背负着一切默默前行的史诗感激励了当时的我。也让我爱上了英雄主义。它也让我意识到了优秀的关卡设计能有多么的震撼人心，我永远也忘不了从不死教会坐电梯回到传火祭祀场的惊喜感。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="GameTierCover/Kenshi Cover.jpg" alt="S Tier Game Cover 02">
-              <div class="tier-game-body">
-                <h5><span lang="en">Kenshi</span><span lang="zh">剑士</span></h5>
-                <p lang="en">The first Steam game I ever took seriously, which made me fall in love with single-player games during my 7th grade. At the time, I gave up playing football and basketball with my classmates after school and fully immersed myself in researching various strategies and gameplay mechanics. Since then, I have never been so engrossed in a game again. The author of this game is also very admirable, having spent 12 years developing it. This independent game spirit of not chasing trends and not giving up easily has deeply influenced me. (So when is Kenshi 2 coming out?)</p>
-                <p lang="zh">我认真玩过的第一款Steam游戏，让7年级的我彻底爱上了单机游戏。当时的我放弃了放学后留在学校和同学踢足球打篮球，转而全身心投入在研究各种破局思路和游戏玩法上。在那之后直至今日，我都再也没有那么沉浸于一款游戏之中过了。这个作者也很令我敬佩，他花了12年去开发这款游戏。这种不追逐潮流，不轻言放弃的独立游戏精神深深地影响着我。（所以剑士2什么时候出啊啊啊。）</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="GameTierCover/Pathfinder Cover.jpg Cover.png" alt="S Tier Game Cover 03">
-              <div class="tier-game-body">
-                <h5><span lang="en">Pathfinder: Wrath of the Righteous</span><span lang="zh">开拓者：正义之怒</span></h5>
-                <p lang="en">This is a game featuring an incredibly intricate branching narrative. Unlike *Baldur's Gate 3, where players can choose from a roster of distinct "Origin" characters, Wrath of the Righteous limits players to a single protagonist—yet offers them access to ten vastly different storylines. For instance, by choosing the Lich path—the one I personally selected—I even gained access to a completely unique set of companions. Moreover, Wrath of the Righteous excels at crafting a narrative that deeply resonates with themes of passion and valor. While playing Baldur's Gate 3, I often felt that my character lacked true potency—that even when exerting every ounce of effort, I was ultimately powerless to change the course of events. In Wrath of the Righteous, however, players are capable of feats as monumental as slaying gods; it is this very sense of epic, visceral power that I find so captivating.</p>
-                <p lang="zh">一款剧情分支极其复杂的游戏。与博德之门3里玩家可以选择多位起源角色不同，在正义之怒里，玩家只能选择一位主角，但玩家拥有10条截然不同的剧情线。比如我选择的巫妖线，甚至获得了完全独特的队友。不仅如此，正义之怒对于激情与勇气的剧情塑造也十分深入人心。在游玩博德之门3时，我时常感觉自己的角色不够厉害，拼尽全力也改变不了什么事情。但在正义之怒里，玩家甚至能弑神，这种热血感我很喜欢。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="GameTierCover/Pathfinder Cover.jpg Cover.png" alt="S Tier Game Cover 03">
-              <div class="tier-game-body">
-                <h5><span lang="en">The Elder Scrolls V: Skyrim</span><span lang="zh">上古卷轴5：天际</span></h5>
-                <p lang="en"></p>
-                <p lang="zh">我心中游戏性的巅峰，</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="GameTierCover/ASTLIBRA Revision Cover.png" alt="S Tier Game Cover 03">
-              <div class="tier-game-body">
-                <h5><span lang="en">ASTLIBRA Revision</span><span lang="zh">神之天平</span></h5>
-                <p lang="en">A great work created by an individual over 14 years of solitary struggle. Despite the "cheap" feel of the visuals and music composed from free assets, the game still deeply captivated me after actual playthrough. The clever combination of combat and RPG systems, tightly woven plot, well-timed musical insertions, and the classic JRPG atmosphere - all these designs are the culmination of the author's inspirations over 14 years. In the game, the protagonist exits the desolate borderlands after hiking for 8 years. In reality, the author Keizo released the original version of ASTLIBRA after persisting for 14 years. In later stories, the protagonist meets trustworthy friends and together experiences an epic tale that saves the world, leaving behind proof of his existence. The author Keizo, after releasing the original ASTLIBRA, met like-minded partners and worked with them to improve it. A year later, Keizo released ASTLIBRA Revision, officially leaving behind his proof of having lived. ASTLIBRA has proven to me that creating a good game doesn't require "many people" or "much money," but rather a design soul and a heart of perseverance. After all, the author Keizo initially was just a player who wanted to play a good game.</p>
-                <p lang="zh">一个人孤军奋战14年所创作出的伟大作品。尽管由免费素材拼凑而成的画面和音乐无不透露出一股“廉价感”，但是在实际体验过后，这游戏还是让我深陷其中。巧妙结合的战斗与rpg系统，逻辑紧密且环环相扣的剧情，恰到好处的音乐插入，以及经典jrpg的氛围感。这些设计都是作者14年里的灵感凝聚而成的产物。在游戏里，主人公在徒步了8年后走出了空无一人的边境之地。而在现实中，作者Keizo在坚持了14年后免费发布了原版神之天平。在后来的故事里，主角遇到了相互信任的朋友，并在一同经历了一段史诗般的故事后，拯救了世界，留下了他“活过的证明”。而作者Keizo在发布了原版神之天平后结识了志同道合的伙伴，并与他们一起完善了神之天平。一年后，作者Keizo发布了神之天平的重制版（Astlibra Revision），正式留下了属于他的“活过的证明”。神之天平向我证明了做出一个好游戏不需要“很多人”或者“很多钱”，只需要一个设计之魂与一颗坚持之心。毕竟说到底，神之天平的作者Keizo最初也只是一名想玩到好游戏的玩家。</p>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="tier-row tier-a">
-          <div class="tier-badge">A</div>
-          <div class="tier-games">
-            <article class="tier-game-card">
-              <img src="GameTierCover/Persona 5 Cover.png" alt="A Tier Game Cover 01">
-              <div class="tier-game-body">
-                <h5><span lang="en">Persona 5</span><span lang="zh">女神异闻录5</span></h5>
-                <p lang="en">My first AAA game, which I played during the summer between 8th and 9th grade. I remember spending a whole month playing it seriously, and after completing it, I went on to play P5S. This game really captivated me, and I still remember thinking the game was ending when I completed the first chapter, feeling quite unsatisfied. After learning there were more chapters to play, I rallied my spirits and ultimately cried my eyes out upon completing the game. The only regret is that I didn't play it the PSR version, so I missed out on some experiences. Looking back, it's really touching to have played such a youthful game during my youth, providing a truly youthful experience.</p>
-                <p lang="zh">我玩过的第一款3A游戏，当时正值8年级到9年级的暑假。我记得我花了整整一个月认真游玩它，并且在通关后又去玩了P5S。这款游戏真的让我上头，我还记得我在通关第一章时以为游戏要结束了，十分的意犹未尽。在得知还有好几章可以玩之后又重整旗鼓，最终在正式通关后泪流满面。可能唯一的遗憾就是我当时玩的不是PSR，所以少了些体验。回忆起来真的很感动，在正值青春的时候玩富有青春感的游戏，真是种青春的体验啊。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="GameTierCover/My Time At Sandrock Cover.png" alt="A Tier Game Cover 02">
-              <div class="tier-game-body">
-                <h5><span lang="en">My Time At Sandrock</span><span lang="zh">沙石镇时光</span></h5>
-                <p lang="en">My first sandbox farming game, which deeply soothed my loneliness during high school. It inspired me to create a sandbox game to embrace the world and spread kindness.</p>
-                <p lang="zh">我玩的第一款沙盒种田游戏，深深地治愈了在高中时身处孤独之中的我。它让我产生了我要创作一款沙盒游戏去拥抱世人并传播善意的理想。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="A-Tier-Game-03.png" alt="A Tier Game Cover 03">
-              <div class="tier-game-body">
-                <h5><span lang="en">A Tier Game 03</span><span lang="zh">A 档游戏 03</span></h5>
-                <p lang="en">Your personal comment for A-tier game 03.</p>
-                <p lang="zh">你对 A 档游戏 03 的个人评语。</p>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="tier-row tier-b">
-          <div class="tier-badge">B</div>
-          <div class="tier-games">
-            <article class="tier-game-card">
-              <img src="B-Tier-Game-01.png" alt="B Tier Game Cover 01">
-              <div class="tier-game-body">
-                <h5><span lang="en">B Tier Game 01</span><span lang="zh">B 档游戏 01</span></h5>
-                <p lang="en">Your personal comment for B-tier game 01.</p>
-                <p lang="zh">你对 B 档游戏 01 的个人评语。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="B-Tier-Game-02.png" alt="B Tier Game Cover 02">
-              <div class="tier-game-body">
-                <h5><span lang="en">B Tier Game 02</span><span lang="zh">B 档游戏 02</span></h5>
-                <p lang="en">Your personal comment for B-tier game 02.</p>
-                <p lang="zh">你对 B 档游戏 02 的个人评语。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="B-Tier-Game-03.png" alt="B Tier Game Cover 03">
-              <div class="tier-game-body">
-                <h5><span lang="en">B Tier Game 03</span><span lang="zh">B 档游戏 03</span></h5>
-                <p lang="en">Your personal comment for B-tier game 03.</p>
-                <p lang="zh">你对 B 档游戏 03 的个人评语。</p>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="tier-row tier-c">
-          <div class="tier-badge">C</div>
-          <div class="tier-games">
-            <article class="tier-game-card">
-              <img src="C-Tier-Game-01.png" alt="C Tier Game Cover 01">
-              <div class="tier-game-body">
-                <h5><span lang="en">C Tier Game 01</span><span lang="zh">C 档游戏 01</span></h5>
-                <p lang="en">Your personal comment for C-tier game 01.</p>
-                <p lang="zh">你对 C 档游戏 01 的个人评语。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="C-Tier-Game-02.png" alt="C Tier Game Cover 02">
-              <div class="tier-game-body">
-                <h5><span lang="en">C Tier Game 02</span><span lang="zh">C 档游戏 02</span></h5>
-                <p lang="en">Your personal comment for C-tier game 02.</p>
-                <p lang="zh">你对 C 档游戏 02 的个人评语。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="C-Tier-Game-03.png" alt="C Tier Game Cover 03">
-              <div class="tier-game-body">
-                <h5><span lang="en">C Tier Game 03</span><span lang="zh">C 档游戏 03</span></h5>
-                <p lang="en">Your personal comment for C-tier game 03.</p>
-                <p lang="zh">你对 C 档游戏 03 的个人评语。</p>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <div class="tier-row tier-d">
-          <div class="tier-badge">D</div>
-          <div class="tier-games">
-            <article class="tier-game-card">
-              <img src="D-Tier-Game-01.png" alt="D Tier Game Cover 01">
-              <div class="tier-game-body">
-                <h5><span lang="en">D Tier Game 01</span><span lang="zh">D 档游戏 01</span></h5>
-                <p lang="en">Your personal comment for D-tier game 01.</p>
-                <p lang="zh">你对 D 档游戏 01 的个人评语。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="D-Tier-Game-02.png" alt="D Tier Game Cover 02">
-              <div class="tier-game-body">
-                <h5><span lang="en">D Tier Game 02</span><span lang="zh">D 档游戏 02</span></h5>
-                <p lang="en">Your personal comment for D-tier game 02.</p>
-                <p lang="zh">你对 D 档游戏 02 的个人评语。</p>
-              </div>
-            </article>
-            <article class="tier-game-card">
-              <img src="D-Tier-Game-03.png" alt="D Tier Game Cover 03">
-              <div class="tier-game-body">
-                <h5><span lang="en">D Tier Game 03</span><span lang="zh">D 档游戏 03</span></h5>
-                <p lang="en">Your personal comment for D-tier game 03.</p>
-                <p lang="zh">你对 D 档游戏 03 的个人评语。</p>
-              </div>
-            </article>
-          </div>
+        <div class="favorite-games-grid">
+          <article class="favorite-game-card">
+            <img src="GameTierCover/Dark Souls Cover.png" alt="DARK SOULS: REMASTERED cover">
+            <div class="favorite-game-body">
+              <h5><span lang="en">DARK SOULS: REMASTERED</span><span lang="zh">黑暗之魂：重制版</span></h5>
+              <p lang="en">I played this game during the pandemic in 9th grade, and the sense of isolation and the epic journey it portrayed inspired me at the time. It also made me fall in love with heroism. The excellent level design left a deep impression on me, and I will never forget the surprise of taking the elevator back to the Firelink Shrine from the Undead Burg.</p>
+              <p lang="zh">我在9年级疫情期间通关的游戏，那种孤独感与背负着一切默默前行的史诗感激励了当时的我。也让我爱上了英雄主义。它也让我意识到了优秀的关卡设计能有多么的震撼人心，我永远也忘不了从不死教会坐电梯回到传火祭祀场的惊喜感。</p>
+            </div>
+          </article>
+          <article class="favorite-game-card">
+            <img src="GameTierCover/Kenshi Cover.jpg" alt="Kenshi cover">
+            <div class="favorite-game-body">
+              <h5><span lang="en">Kenshi</span><span lang="zh">剑士</span></h5>
+              <p lang="en">The first Steam game I ever took seriously, which made me fall in love with single-player games during my 7th grade. At the time, I gave up playing football and basketball with my classmates after school and fully immersed myself in researching various strategies and gameplay mechanics. Since then, I have never been so engrossed in a game again. The author of this game is also very admirable, having spent 12 years developing it. This independent game spirit of not chasing trends and not giving up easily has deeply influenced me. (So when is Kenshi 2 coming out?)</p>
+              <p lang="zh">我认真玩过的第一款Steam游戏，让7年级的我彻底爱上了单机游戏。当时的我放弃了放学后留在学校和同学踢足球打篮球，转而全身心投入在研究各种破局思路和游戏玩法上。在那之后直至今日，我都再也没有那么沉浸于一款游戏之中过了。这个作者也很令我敬佩，他花了12年去开发这款游戏。这种不追逐潮流，不轻言放弃的独立游戏精神深深地影响着我。（所以剑士2什么时候出啊啊啊。）</p>
+            </div>
+          </article>
+          <article class="favorite-game-card">
+            <img src="GameTierCover/Pathfinder Cover.jpg" alt="Pathfinder: Wrath of the Righteous cover">
+            <div class="favorite-game-body">
+              <h5><span lang="en">Pathfinder: Wrath of the Righteous</span><span lang="zh">开拓者：正义之怒</span></h5>
+              <p lang="en">This is a game featuring an incredibly intricate branching narrative. Unlike *Baldur's Gate 3, where players can choose from a roster of distinct "Origin" characters, Wrath of the Righteous limits players to a single protagonist—yet offers them access to ten vastly different storylines. For instance, by choosing the Lich path—the one I personally selected—I even gained access to a completely unique set of companions. Moreover, Wrath of the Righteous excels at crafting a narrative that deeply resonates with themes of passion and valor. While playing Baldur's Gate 3, I often felt that my character lacked true potency—that even when exerting every ounce of effort, I was ultimately powerless to change the course of events. In Wrath of the Righteous, however, players are capable of feats as monumental as slaying gods; it is this very sense of epic, visceral power that I find so captivating.</p>
+              <p lang="zh">一款剧情分支极其复杂的游戏。与博德之门3里玩家可以选择多位起源角色不同，在正义之怒里，玩家只能选择一位主角，但玩家拥有10条截然不同的剧情线。比如我选择的巫妖线，甚至获得了完全独特的队友。不仅如此，正义之怒对于激情与勇气的剧情塑造也十分深入人心。在游玩博德之门3时，我时常感觉自己的角色不够厉害，拼尽全力也改变不了什么事情。但在正义之怒里，玩家甚至能弑神，这种热血感我很喜欢。</p>
+            </div>
+          </article>
+          <article class="favorite-game-card">
+            <div class="favorite-game-art" role="img" aria-label="The Elder Scrolls V: Skyrim cover">The Elder Scrolls V: Skyrim</div>
+            <div class="favorite-game-body">
+              <h5><span lang="en">The Elder Scrolls V: Skyrim</span><span lang="zh">上古卷轴5：天际</span></h5>
+              <p lang="en"></p>
+              <p lang="zh">我心中游戏性的巅峰，</p>
+            </div>
+          </article>
+          <article class="favorite-game-card">
+            <img src="GameTierCover/ASTLIBRA Revision Cover.png" alt="ASTLIBRA Revision cover">
+            <div class="favorite-game-body">
+              <h5><span lang="en">ASTLIBRA Revision</span><span lang="zh">神之天平</span></h5>
+              <p lang="en">A great work created by an individual over 14 years of solitary struggle. Despite the "cheap" feel of the visuals and music composed from free assets, the game still deeply captivated me after actual playthrough. The clever combination of combat and RPG systems, tightly woven plot, well-timed musical insertions, and the classic JRPG atmosphere - all these designs are the culmination of the author's inspirations over 14 years. In the game, the protagonist exits the desolate borderlands after hiking for 8 years. In reality, the author Keizo released the original version of ASTLIBRA after persisting for 14 years. In later stories, the protagonist meets trustworthy friends and together experiences an epic tale that saves the world, leaving behind proof of his existence. The author Keizo, after releasing the original ASTLIBRA, met like-minded partners and worked with them to improve it. A year later, Keizo released ASTLIBRA Revision, officially leaving behind his proof of having lived. ASTLIBRA has proven to me that creating a good game doesn't require "many people" or "much money," but rather a design soul and a heart of perseverance. After all, the author Keizo initially was just a player who wanted to play a good game.</p>
+              <p lang="zh">一个人孤军奋战14年所创作出的伟大作品。尽管由免费素材拼凑而成的画面和音乐无不透露出一股“廉价感”，但是在实际体验过后，这游戏还是让我深陷其中。巧妙结合的战斗与rpg系统，逻辑紧密且环环相扣的剧情，恰到好处的音乐插入，以及经典jrpg的氛围感。这些设计都是作者14年里的灵感凝聚而成的产物。在游戏里，主人公在徒步了8年后走出了空无一人的边境之地。而在现实中，作者Keizo在坚持了14年后免费发布了原版神之天平。在后来的故事里，主角遇到了相互信任的朋友，并在一同经历了一段史诗般的故事后，拯救了世界，留下了他“活过的证明”。而作者Keizo在发布了原版神之天平后结识了志同道合的伙伴，并与他们一起完善了神之天平。一年后，作者Keizo发布了神之天平的重制版（Astlibra Revision），正式留下了属于他的“活过的证明”。神之天平向我证明了做出一个好游戏不需要“很多人”或者“很多钱”，只需要一个设计之魂与一颗坚持之心。毕竟说到底，神之天平的作者Keizo最初也只是一名想玩到好游戏的玩家。</p>
+            </div>
+          </article>
+          <article class="favorite-game-card">
+            <img src="GameTierCover/Persona 5 Cover.png" alt="Persona 5 cover">
+            <div class="favorite-game-body">
+              <h5><span lang="en">Persona 5</span><span lang="zh">女神异闻录5</span></h5>
+              <p lang="en">My first AAA game, which I played during the summer between 8th and 9th grade. I remember spending a whole month playing it seriously, and after completing it, I went on to play P5S. This game really captivated me, and I still remember thinking the game was ending when I completed the first chapter, feeling quite unsatisfied. After learning there were more chapters to play, I rallied my spirits and ultimately cried my eyes out upon completing the game. The only regret is that I didn't play it the PSR version, so I missed out on some experiences. Looking back, it's really touching to have played such a youthful game during my youth, providing a truly youthful experience.</p>
+              <p lang="zh">我玩过的第一款3A游戏，当时正值8年级到9年级的暑假。我记得我花了整整一个月认真游玩它，并且在通关后又去玩了P5S。这款游戏真的让我上头，我还记得我在通关第一章时以为游戏要结束了，十分的意犹未尽。在得知还有好几章可以玩之后又重整旗鼓，最终在正式通关后泪流满面。可能唯一的遗憾就是我当时玩的不是PSR，所以少了些体验。回忆起来真的很感动，在正值青春的时候玩富有青春感的游戏，真是种青春的体验啊。</p>
+            </div>
+          </article>
+          <article class="favorite-game-card">
+            <img src="GameTierCover/My Time At Sandrock Cover.png" alt="My Time At Sandrock cover">
+            <div class="favorite-game-body">
+              <h5><span lang="en">My Time At Sandrock</span><span lang="zh">沙石镇时光</span></h5>
+              <p lang="en">My first sandbox farming game, which deeply soothed my loneliness during high school. It inspired me to create a sandbox game to embrace the world and spread kindness.</p>
+              <p lang="zh">我玩的第一款沙盒种田游戏，深深地治愈了在高中时身处孤独之中的我。它让我产生了我要创作一款沙盒游戏去拥抱世人并传播善意的理想。</p>
+            </div>
+          </article>
         </div>
       </div>
 
