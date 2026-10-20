@@ -676,59 +676,90 @@
     }
 
     .favorite-game-card {
-      background: linear-gradient(160deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.03));
+      border-radius: 14px;
+      min-width: 0;
+    }
+
+    .favorite-game-cover {
+      display: block;
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      padding: 0;
       border: 1px solid rgba(143, 179, 255, 0.3);
       border-radius: 14px;
       overflow: hidden;
-      transition: all 0.35s ease;
-      backdrop-filter: blur(6px);
-    }
-
-    .favorite-game-card:hover {
-      transform: translateY(-5px) scale(1.01);
-      border-color: rgba(166, 198, 255, 0.75);
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
-    }
-
-    .favorite-game-card img,
-    .favorite-game-art {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      display: block;
       background: rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
-    .favorite-game-art {
-      display: grid;
-      place-items: center;
-      padding: 20px;
-      background: radial-gradient(circle at 50% 35%, rgba(214, 178, 106, 0.32), transparent 42%), linear-gradient(145deg, #26364b, #101722 68%, #59452c);
-      color: #f2dfb9;
-      font-family: Georgia, serif;
-      font-size: clamp(1.2rem, 2vw, 1.8rem);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-align: center;
-      text-shadow: 0 2px 10px #000;
+    .favorite-game-cover:hover,
+    .favorite-game-cover:focus-visible {
+      transform: translateY(-5px);
+      border-color: rgba(166, 198, 255, 0.85);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
+      outline: none;
+    }
+
+    .favorite-game-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .favorite-game-body {
-      padding: 10px 12px 12px 12px;
+      display: none;
     }
 
-    .favorite-game-body h5 {
-      margin: 0 0 6px 0;
-      font-size: 0.98rem;
-      color: #ffffff;
-      letter-spacing: 0.02em;
+    .favorite-game-dialog {
+      width: min(760px, calc(100% - 32px));
+      max-height: min(80vh, 780px);
+      margin: auto;
+      padding: 34px;
+      overflow: auto;
+      border: 1px solid rgba(143, 179, 255, 0.5);
+      border-radius: 20px;
+      background: linear-gradient(155deg, #102752, #050b1b 76%);
+      color: #fff;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65);
     }
 
-    .favorite-game-body p {
+    .favorite-game-dialog::backdrop {
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(5px);
+    }
+
+    .favorite-game-dialog-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      margin: -14px -12px 4px 12px;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .favorite-game-dialog h4 {
+      margin: 8px 0 16px;
+      padding-right: 24px;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      line-height: 1.35;
+    }
+
+    .favorite-game-dialog-body p {
       margin: 0;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: #d4def4;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #e0e9fb;
+    }
+
+    .favorite-game-dialog-body p + p {
+      margin-top: 12px;
     }
 
     .contact {
@@ -1130,9 +1161,8 @@
         grid-template-columns: 1fr;
       }
 
-      .favorite-game-card img,
-      .favorite-game-art {
-        height: 200px;
+      .favorite-game-dialog {
+        padding: 26px 22px;
       }
     }
 
@@ -1444,16 +1474,23 @@
       color: #7a2a00;
     }
 
-    body.usc-theme .favorite-game-card {
+    body.usc-theme .favorite-game-cover {
+      border-color: #990000;
+    }
+
+    body.usc-theme .favorite-game-cover:hover,
+    body.usc-theme .favorite-game-cover:focus-visible {
+      box-shadow: 6px 6px 0 #ffcc00;
+    }
+
+    body.usc-theme .favorite-game-dialog {
+      border: 2px solid #990000;
       background: #fffdf8;
-      border: 1px solid #990000;
-    }
-
-    body.usc-theme .favorite-game-body h5 {
       color: #990000;
+      box-shadow: 10px 10px 0 #ffcc00;
     }
 
-    body.usc-theme .favorite-game-body p {
+    body.usc-theme .favorite-game-dialog-body p {
       color: #5d4a38;
     }
 
@@ -2109,64 +2146,64 @@
 
         <div class="favorite-games-grid">
           <article class="favorite-game-card">
-            <img src="GameTierCover/Dark Souls Cover.png" alt="DARK SOULS: REMASTERED cover">
-            <div class="favorite-game-body">
+            <button type="button" class="favorite-game-cover"><img src="GameTierCover/Dark Souls Cover.png" alt="DARK SOULS: REMASTERED cover"></button>
+            <div class="favorite-game-body" hidden>
               <h5><span lang="en">DARK SOULS: REMASTERED</span><span lang="zh">黑暗之魂：重制版</span></h5>
               <p lang="en">I played this game during the pandemic in 9th grade, and the sense of isolation and the epic journey it portrayed inspired me at the time. It also made me fall in love with heroism. The excellent level design left a deep impression on me, and I will never forget the surprise of taking the elevator back to the Firelink Shrine from the Undead Burg.</p>
               <p lang="zh">我在9年级疫情期间通关的游戏，那种孤独感与背负着一切默默前行的史诗感激励了当时的我。也让我爱上了英雄主义。它也让我意识到了优秀的关卡设计能有多么的震撼人心，我永远也忘不了从不死教会坐电梯回到传火祭祀场的惊喜感。</p>
             </div>
           </article>
           <article class="favorite-game-card">
-            <img src="GameTierCover/Kenshi Cover.jpg" alt="Kenshi cover">
-            <div class="favorite-game-body">
+            <button type="button" class="favorite-game-cover"><img src="GameTierCover/Kenshi Cover.jpg" alt="Kenshi cover"></button>
+            <div class="favorite-game-body" hidden>
               <h5><span lang="en">Kenshi</span><span lang="zh">剑士</span></h5>
               <p lang="en">The first Steam game I ever took seriously, which made me fall in love with single-player games during my 7th grade. At the time, I gave up playing football and basketball with my classmates after school and fully immersed myself in researching various strategies and gameplay mechanics. Since then, I have never been so engrossed in a game again. The author of this game is also very admirable, having spent 12 years developing it. This independent game spirit of not chasing trends and not giving up easily has deeply influenced me. (So when is Kenshi 2 coming out?)</p>
               <p lang="zh">我认真玩过的第一款Steam游戏，让7年级的我彻底爱上了单机游戏。当时的我放弃了放学后留在学校和同学踢足球打篮球，转而全身心投入在研究各种破局思路和游戏玩法上。在那之后直至今日，我都再也没有那么沉浸于一款游戏之中过了。这个作者也很令我敬佩，他花了12年去开发这款游戏。这种不追逐潮流，不轻言放弃的独立游戏精神深深地影响着我。（所以剑士2什么时候出啊啊啊。）</p>
             </div>
           </article>
           <article class="favorite-game-card">
-            <img src="GameTierCover/Pathfinder Cover.jpg" alt="Pathfinder: Wrath of the Righteous cover">
-            <div class="favorite-game-body">
+            <button type="button" class="favorite-game-cover"><img src="GameTierCover/Pathfinder Cover.jpg" alt="Pathfinder: Wrath of the Righteous cover"></button>
+            <div class="favorite-game-body" hidden>
               <h5><span lang="en">Pathfinder: Wrath of the Righteous</span><span lang="zh">开拓者：正义之怒</span></h5>
               <p lang="en">This is a game featuring an incredibly intricate branching narrative. Unlike *Baldur's Gate 3, where players can choose from a roster of distinct "Origin" characters, Wrath of the Righteous limits players to a single protagonist—yet offers them access to ten vastly different storylines. For instance, by choosing the Lich path—the one I personally selected—I even gained access to a completely unique set of companions. Moreover, Wrath of the Righteous excels at crafting a narrative that deeply resonates with themes of passion and valor. While playing Baldur's Gate 3, I often felt that my character lacked true potency—that even when exerting every ounce of effort, I was ultimately powerless to change the course of events. In Wrath of the Righteous, however, players are capable of feats as monumental as slaying gods; it is this very sense of epic, visceral power that I find so captivating.</p>
               <p lang="zh">一款剧情分支极其复杂的游戏。与博德之门3里玩家可以选择多位起源角色不同，在正义之怒里，玩家只能选择一位主角，但玩家拥有10条截然不同的剧情线。比如我选择的巫妖线，甚至获得了完全独特的队友。不仅如此，正义之怒对于激情与勇气的剧情塑造也十分深入人心。在游玩博德之门3时，我时常感觉自己的角色不够厉害，拼尽全力也改变不了什么事情。但在正义之怒里，玩家甚至能弑神，这种热血感我很喜欢。</p>
             </div>
           </article>
           <article class="favorite-game-card">
-            <img src="GameTierCover/Skyrim Cover.jpg" alt="The Elder Scrolls V: Skyrim - Special Edition cover">
-            <div class="favorite-game-body">
+            <button type="button" class="favorite-game-cover"><img src="GameTierCover/Skyrim Cover.jpg" alt="The Elder Scrolls V: Skyrim - Special Edition cover"></button>
+            <div class="favorite-game-body" hidden>
               <h5><span lang="en">The Elder Scrolls V: Skyrim - Special Edition</span><span lang="zh">上古卷轴5：天际 特别版</span></h5>
               <p lang="en">No words needed—this is the most perfect game in my heart.</p>
               <p lang="zh">无需多言，我心中最完美的游戏。</p>
             </div>
           </article>
           <article class="favorite-game-card">
-            <img src="GameTierCover/Astlibra Revision Cover.png" alt="ASTLIBRA Revision cover">
-            <div class="favorite-game-body">
+            <button type="button" class="favorite-game-cover"><img src="GameTierCover/Astlibra Revision Cover.png" alt="ASTLIBRA Revision cover"></button>
+            <div class="favorite-game-body" hidden>
               <h5><span lang="en">ASTLIBRA Revision</span><span lang="zh">神之天平</span></h5>
               <p lang="en">A great work created by an individual over 14 years of solitary struggle. Despite the "cheap" feel of the visuals and music composed from free assets, the game still deeply captivated me after actual playthrough. The clever combination of combat and RPG systems, tightly woven plot, well-timed musical insertions, and the classic JRPG atmosphere - all these designs are the culmination of the author's inspirations over 14 years. In the game, the protagonist exits the desolate borderlands after hiking for 8 years. In reality, the author Keizo released the original version of ASTLIBRA after persisting for 14 years. In later stories, the protagonist meets trustworthy friends and together experiences an epic tale that saves the world, leaving behind proof of his existence. The author Keizo, after releasing the original ASTLIBRA, met like-minded partners and worked with them to improve it. A year later, Keizo released ASTLIBRA Revision, officially leaving behind his proof of having lived. ASTLIBRA has proven to me that creating a good game doesn't require "many people" or "much money," but rather a design soul and a heart of perseverance. After all, the author Keizo initially was just a player who wanted to play a good game.</p>
               <p lang="zh">一个人孤军奋战14年所创作出的伟大作品。尽管由免费素材拼凑而成的画面和音乐无不透露出一股“廉价感”，但是在实际体验过后，这游戏还是让我深陷其中。巧妙结合的战斗与rpg系统，逻辑紧密且环环相扣的剧情，恰到好处的音乐插入，以及经典jrpg的氛围感。这些设计都是作者14年里的灵感凝聚而成的产物。在游戏里，主人公在徒步了8年后走出了空无一人的边境之地。而在现实中，作者Keizo在坚持了14年后免费发布了原版神之天平。在后来的故事里，主角遇到了相互信任的朋友，并在一同经历了一段史诗般的故事后，拯救了世界，留下了他“活过的证明”。而作者Keizo在发布了原版神之天平后结识了志同道合的伙伴，并与他们一起完善了神之天平。一年后，作者Keizo发布了神之天平的重制版（Astlibra Revision），正式留下了属于他的“活过的证明”。神之天平向我证明了做出一个好游戏不需要“很多人”或者“很多钱”，只需要一个设计之魂与一颗坚持之心。毕竟说到底，神之天平的作者Keizo最初也只是一名想玩到好游戏的玩家。</p>
             </div>
           </article>
           <article class="favorite-game-card">
-            <img src="GameTierCover/Dragon's Dogma 2.jpg" alt="Dragon's Dogma 2 cover">
-            <div class="favorite-game-body">
+            <button type="button" class="favorite-game-cover"><img src="GameTierCover/Dragon's Dogma 2.jpg" alt="Dragon's Dogma 2 cover"></button>
+            <div class="favorite-game-body" hidden>
               <h5><span lang="en">Dragon's Dogma 2</span><span lang="zh">龙之信条2</span></h5>
               <p lang="en">A one-of-a-kind game that makes the most of hardship, with an epic world and quests full of discovery. It gave me an experience I could never find anywhere else.</p>
               <p lang="zh">苦中作乐，十分独特的游戏，拥有极其史诗的世界观和探索感极强的各类任务，给了我不可复制的游戏体验。</p>
             </div>
           </article>
           <article class="favorite-game-card">
-            <img src="GameTierCover/Persona 5 Cover.png" alt="Persona 5 cover">
-            <div class="favorite-game-body">
+            <button type="button" class="favorite-game-cover"><img src="GameTierCover/Persona 5 Cover.png" alt="Persona 5 cover"></button>
+            <div class="favorite-game-body" hidden>
               <h5><span lang="en">Persona 5</span><span lang="zh">女神异闻录5</span></h5>
               <p lang="en">My first AAA game, which I played during the summer between 8th and 9th grade. I remember spending a whole month playing it seriously, and after completing it, I went on to play P5S. This game really captivated me, and I still remember thinking the game was ending when I completed the first chapter, feeling quite unsatisfied. After learning there were more chapters to play, I rallied my spirits and ultimately cried my eyes out upon completing the game. The only regret is that I didn't play it the PSR version, so I missed out on some experiences. Looking back, it's really touching to have played such a youthful game during my youth, providing a truly youthful experience.</p>
               <p lang="zh">我玩过的第一款3A游戏，当时正值8年级到9年级的暑假。我记得我花了整整一个月认真游玩它，并且在通关后又去玩了P5S。这款游戏真的让我上头，我还记得我在通关第一章时以为游戏要结束了，十分的意犹未尽。在得知还有好几章可以玩之后又重整旗鼓，最终在正式通关后泪流满面。可能唯一的遗憾就是我当时玩的不是PSR，所以少了些体验。回忆起来真的很感动，在正值青春的时候玩富有青春感的游戏，真是种青春的体验啊。</p>
             </div>
           </article>
           <article class="favorite-game-card">
-            <img src="GameTierCover/My Time At Sandrock Cover.png" alt="My Time At Sandrock cover">
-            <div class="favorite-game-body">
+            <button type="button" class="favorite-game-cover"><img src="GameTierCover/My Time At Sandrock Cover.png" alt="My Time At Sandrock cover"></button>
+            <div class="favorite-game-body" hidden>
               <h5><span lang="en">My Time At Sandrock</span><span lang="zh">沙石镇时光</span></h5>
               <p lang="en">My first sandbox farming game, which deeply soothed my loneliness during high school. It inspired me to create a sandbox game to embrace the world and spread kindness.</p>
               <p lang="zh">我玩的第一款沙盒种田游戏，深深地治愈了在高中时身处孤独之中的我。它让我产生了我要创作一款沙盒游戏去拥抱世人并传播善意的理想。</p>
@@ -2177,6 +2214,12 @@
 
     </div>
   </section>
+
+  <dialog id="favorite-game-dialog" class="favorite-game-dialog" aria-labelledby="favorite-game-dialog-title">
+    <button type="button" class="favorite-game-dialog-close" aria-label="Close game details"><span lang="en">Close</span><span lang="zh">关闭</span></button>
+    <h4 id="favorite-game-dialog-title"></h4>
+    <div id="favorite-game-dialog-body" class="favorite-game-dialog-body"></div>
+  </dialog>
 
   <!-- Artworks / 绘画 -->
   <section class="section animate-on-scroll" id="arts">
@@ -2342,6 +2385,25 @@
           }
         });
       }
+
+      // Favorite game details dialog / 推荐游戏详情弹窗
+      const favoriteGameDialog = document.getElementById('favorite-game-dialog');
+      const favoriteGameDialogTitle = document.getElementById('favorite-game-dialog-title');
+      const favoriteGameDialogBody = document.getElementById('favorite-game-dialog-body');
+      const favoriteGameDialogClose = favoriteGameDialog.querySelector('.favorite-game-dialog-close');
+
+      document.querySelectorAll('.favorite-game-cover').forEach(cover => {
+        cover.addEventListener('click', () => {
+          const details = cover.closest('.favorite-game-card').querySelector('.favorite-game-body');
+          const title = details.querySelector('h5');
+
+          favoriteGameDialogTitle.innerHTML = title.innerHTML;
+          favoriteGameDialogBody.replaceChildren(...[...details.querySelectorAll('p')].map(paragraph => paragraph.cloneNode(true)));
+          favoriteGameDialog.showModal();
+        });
+      });
+
+      favoriteGameDialogClose.addEventListener('click', () => favoriteGameDialog.close());
 
       // Lightbox Image Click Zoom / Lightbox 图片点击放大
       document.querySelectorAll('.arts-grid .art-item img').forEach(img => {
